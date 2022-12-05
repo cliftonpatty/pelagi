@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw5w7wh8swj1v"]
+
+[ext_resource type="Script" path="res://scenes/world/fishing/world_generation/world_generator.gd" id="1_fxt2u"]
+
+[node name="world_generator" type="Node2D"]
+script = ExtResource("1_fxt2u")

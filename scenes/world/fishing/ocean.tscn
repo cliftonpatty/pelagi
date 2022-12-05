@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://liicqsy504wo"]
+
+[ext_resource type="PackedScene" uid="uid://dv6q0wn7wrkvg" path="res://scenes/player/player.tscn" id="1_2kdgh"]
+[ext_resource type="Script" path="res://scenes/world/fishing/ocean.gd" id="1_3dxfq"]
+
+[node name="Ocean" type="Node2D"]
+script = ExtResource("1_3dxfq")
+
+[node name="Player" parent="." instance=ExtResource("1_2kdgh")]
+position = Vector2(999, 425)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+rotation_smoothing_enabled = true

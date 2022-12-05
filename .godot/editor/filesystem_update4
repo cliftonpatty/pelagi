@@ -1,0 +1,9 @@
+res://scenes/world/fishing/ocean.tscn
+res://scenes/player/player.tscn
+res://scenes/world/fishing/ocean.gd
+res://scenes/player/player.gd
+res://scripts/globals/globals.gd
+res://scenes/world/fishing/world_generation/cave_walls.tscn
+res://scenes/world/fishing/world_generation/world_generator.tscn
+res://scenes/world/fishing/world_generation/world_generator.gd
+res://scenes/world/fishing/world_generation/cave_walls.gd
