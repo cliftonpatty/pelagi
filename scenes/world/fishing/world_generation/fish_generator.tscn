@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnknqobfg85k6"]
+
+[ext_resource type="Script" path="res://scenes/world/fishing/world_generation/fish_generator.gd" id="1_otei1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50pui"]
+size = Vector2(1607, 86)
+
+[node name="FishGenerator" type="Node2D"]
+script = ExtResource("1_otei1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_50pui")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

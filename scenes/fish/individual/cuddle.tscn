@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://kbbi2lrdbrc1"]
+
+[ext_resource type="PackedScene" uid="uid://ckatidc0tnvcq" path="res://scenes/fish/FishBase.tscn" id="1_iga6g"]
+[ext_resource type="Texture2D" uid="uid://crew5vcigk8ih" path="res://assets/images/fish/cuddle.png" id="2_h4w3i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6iyds"]
+size = Vector2(142, 68)
+
+[node name="Cuddle" instance=ExtResource("1_iga6g")]
+swimSpeed = 350
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_h4w3i")
+flip_h = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(6, 2)
+shape = SubResource("RectangleShape2D_6iyds")

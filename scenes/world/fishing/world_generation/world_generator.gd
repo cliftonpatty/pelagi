@@ -1,27 +1,31 @@
 extends Node2D
 
 var depth: int
-var wall_segment = preload("res://scenes/world/fishing/world_generation/cave_walls.tscn")
-@export var wall_size: Vector2 = Vector2( 2, 50 )
+var wallSegment = preload("res://scenes/world/fishing/world_generation/cave_walls.tscn")
+@export var wallSize: Vector2 = Vector2( 2, 50 )
 @onready @export var parentTexture: CompressedTexture2D
+
+#Probably temporary tools to visualize the walls in the editor
+@onready var leftMargin = $LeftMargin
+@onready var rightMargin = $RightMargin
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	wall_size *= 1000
+	wallSize *= 1000
 	depth = Globals.depth
 	var curDepth = 0
 	while curDepth < depth:
-		make_a_wall(curDepth, 0)
-		make_a_wall(curDepth, 4000)
-		curDepth += wall_size.y
+		make_a_wall(curDepth, leftMargin)
+		make_a_wall(curDepth, rightMargin)
+		curDepth += wallSize.y
 
-func make_a_wall(curDepth, offset) -> void:
-	var newWall = wall_segment.instantiate()
+func make_a_wall(curDepth, margin) -> void:
+	var newWall = wallSegment.instantiate()
 	self.add_child(newWall)
 
 	#Pass values down to new wall before running init function 
-	newWall.wall_height = wall_size.y
-	newWall.wall_width = wall_size.x
+	newWall.wallHeight = wallSize.y
+	newWall.wallWidth = wallSize.x
 	newWall.childTexture = parentTexture
 	
 	# Function internal to the 'cave_walls' scene, just initializes 
@@ -30,5 +34,8 @@ func make_a_wall(curDepth, offset) -> void:
 	newWall.set_extents()
 	
 	newWall.global_position.y = curDepth
-	newWall.global_position.x = offset
 	
+	if margin == rightMargin:
+		newWall.global_position.x = margin.global_position.x + wallSize.x/2
+	else:
+		newWall.global_position.x = margin.global_position.x - wallSize.x/2
