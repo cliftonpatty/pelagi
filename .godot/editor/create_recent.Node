@@ -1,4 +1,9 @@
+CollisionPolygon2D
+Area2D
+Node2D
 Polygon2D
+RichTextLabel
+Control
 CollisionShape2D
 StaticBody2D
 Sprite2D

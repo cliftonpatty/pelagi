@@ -18,3 +18,5 @@ texture = ExtResource("1_7pgf2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_tkqo6")
+
+[node name="Body" type="Node2D" parent="."]

@@ -1,4 +1,4 @@
 extends Node
 
-var dropSpeed = 5
+var dropSpeed = 10
 var depth = 2000

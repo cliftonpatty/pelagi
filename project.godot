@@ -19,12 +19,18 @@ config/icon="res://icon.svg"
 
 Globals="*res://scripts/globals/globals.gd"
 
+[debug]
+
+gdscript/warnings/unused_variable=0
+gdscript/warnings/integer_division=0
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="viewport"
 window/stretch/scale=0.85
 
-[rendering]
+[editor_plugins]
 
-renderer/rendering_method="mobile"
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg")

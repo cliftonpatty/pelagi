@@ -1,12 +1,9 @@
 extends CharacterBody2D
 
+#Body and Collision-------------------------------------------------------------
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+const SPEED = 600.0
 
 func _physics_process(delta: float) -> void:
 	position.y += Globals.dropSpeed
@@ -17,5 +14,24 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	apply_sprite_rotation(delta)
+	
 	move_and_slide()
+
+func apply_sprite_rotation(delta):
+	if velocity.x > 0:
+		rotation = lerp_sprite(-0.5, delta)
+	elif velocity.x < 0:
+		rotation = lerp_sprite(0.5, delta)
+	elif velocity.x > 0:
+		rotation = lerp_sprite(0.5, delta)
+	elif velocity.x < 0:
+		rotation = lerp_sprite(-0.5, delta)
+	else:
+		rotation = lerp_sprite(0, delta)
+		
+#Smooth rotation on movement 
+func lerp_sprite( target, delta ):
+	return lerp_angle( rotation, target, ( 10 * delta) )
+	

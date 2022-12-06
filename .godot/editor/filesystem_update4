@@ -1,9 +1,12 @@
-res://scenes/world/fishing/ocean.tscn
 res://scenes/player/player.tscn
-res://scenes/world/fishing/ocean.gd
 res://scenes/player/player.gd
-res://scripts/globals/globals.gd
+res://addons/project_map/plugin.gd
+res://addons/project_map/pm_comment_node.gd
 res://scenes/world/fishing/world_generation/cave_walls.tscn
+res://addons/ColorPreview/Picker.tscn
+res://scenes/world/fishing/ocean.tscn
 res://scenes/world/fishing/world_generation/world_generator.tscn
-res://scenes/world/fishing/world_generation/world_generator.gd
 res://scenes/world/fishing/world_generation/cave_walls.gd
+res://scenes/world/fishing/world_generation/world_generator.gd
+res://scripts/globals/globals.gd
+res://scenes/world/fishing/ocean.gd
