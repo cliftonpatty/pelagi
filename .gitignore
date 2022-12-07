@@ -6,3 +6,7 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+
+.godot/editor/script_editor_cache.cfg
+
+.godot/editor/player.tscn-folding-c2c62cb8c73458cd122faf659769dc80.cfg
