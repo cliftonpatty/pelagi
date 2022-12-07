@@ -7,9 +7,8 @@ var myPoly: Polygon2D
 
 @onready var col: CollisionShape2D = $CollisionShape2D
 
-
+#Create myself
 func set_extents() -> void:
-	print('CHILD??', childTexture)
 	col.shape.extents.y = wallHeight/2
 	col.shape.extents.x = wallWidth/2
 	col.position.y = wallHeight/2

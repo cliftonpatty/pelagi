@@ -15,16 +15,24 @@ const SPEED: float = 600.0
 
 func _physics_process(delta: float) -> void:
 	position.y += Globals.dropSpeed * delta
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("LeftMove", "RightMove")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	apply_sprite_rotation(delta)
+	""" 
+	ALERT
+	IF PLAYER IS NOT UNDERWATER - POSITION IS CONTROLLED BY 'OCEAN' SCENE
+	""" 
 	
+	if Globals.underwater:
+	
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var direction := Input.get_axis("LeftMove", "RightMove")
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+		apply_sprite_rotation(delta)
+
 	move_and_slide()
 	#print(drillActive)
 	
@@ -56,24 +64,31 @@ func _input(event: InputEvent) -> void:
 		drillActive = false
 		sprite.frame = 0
 
-func _on_fish_detection_area_entered(fish: Area2D) -> void:
-	if fish.is_in_group('fish'):
+func _on_fish_detection_area_entered(tangible: Area2D) -> void:
+	#Is it a gem?
+	if tangible.is_in_group('gems'):
 		if drillActive and !Globals.ascending:
-			fish.drilled_by_player()
+			print('GEM')
+			tangible.drilled_by_player()
+	#Is it a fish?
+	if tangible.is_in_group('fish'):
+		#Is the drill on and are we heading down?
+		if drillActive and !Globals.ascending:
+			tangible.drilled_by_player()
+		#Is the drill off? If so, we need to catch the first fish and head up
 		if drillActive == false:
-			if !fish.caught:
+			if !tangible.caught:
 				if Globals.ascending == false:
 					Globals.trigger_ascent()
 					$Bubbles.visible = false
 					sprite.frame = 2
 					hookSprite.visible = true
-					fish.caught = true
-					call_deferred("catch_a_fish", fish)
+					tangible.caught = true
+					call_deferred("catch_a_fish", tangible)
 				else:
-					fish.caught = true
-					call_deferred("catch_a_fish", fish)
+					tangible.caught = true
+					call_deferred("catch_a_fish", tangible)
 
 func catch_a_fish(fish):
-		
 		fish.state_swap()
 		emit_signal("caught_a_fish", fish)

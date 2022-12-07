@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://betcukpb07lly"]
+
+[ext_resource type="Texture2D" uid="uid://bmlipw0lvs3ft" path="res://assets/images/world/props/fishing/claw.png" id="1_amy1w"]
+
+[node name="Claw" type="Sprite2D"]
+position = Vector2(-6.10352e-05, 0)
+scale = Vector2(0.415714, 0.489726)
+texture = ExtResource("1_amy1w")
+offset = Vector2(41.074, -435.067)

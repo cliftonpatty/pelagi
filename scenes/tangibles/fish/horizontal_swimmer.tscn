@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce2f62gkg6gs8"]
+
+[ext_resource type="PackedScene" uid="uid://bwxuo0b1uiojb" path="res://scenes/tangibles/fish/fish_base.tscn" id="1_115jd"]
+[ext_resource type="Script" path="res://scenes/tangibles/fish/horizontal_swimmer.gd" id="2_cvqxd"]
+
+[node name="HorizontalSwimmer" instance=ExtResource("1_115jd")]
+script = ExtResource("2_cvqxd")
+rarity = null
+solo = null

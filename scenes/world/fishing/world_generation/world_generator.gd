@@ -5,11 +5,10 @@ var wallSegment = preload("res://scenes/world/fishing/world_generation/cave_wall
 @export var wallSize: Vector2 = Vector2( 2, 50 )
 @onready @export var parentTexture: CompressedTexture2D
 
-#Probably temporary tools to visualize the walls in the editor
+#Probably temporary tools to visualize the walls spawn position in the editor
 @onready var leftMargin = $LeftMargin
 @onready var rightMargin = $RightMargin
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	wallSize *= 1000
 	depth = Globals.depth

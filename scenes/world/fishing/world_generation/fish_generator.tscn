@@ -17,4 +17,10 @@ shape = SubResource("RectangleShape2D_50pui")
 wait_time = 0.7
 autostart = true
 
+[node name="RayPointingLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-1016, 0)
+
+[node name="RayPointingRight" type="RayCast2D" parent="."]
+target_position = Vector2(1152, 0)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

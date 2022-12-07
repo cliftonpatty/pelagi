@@ -1,8 +1,11 @@
+res://scenes/tangibles/fish
+res://scenes/tangibles/gems/individual
+res://scenes/tangibles/gems
+res://assets/textures
 res://scenes/world/fishing
+res://assets/shaders
 res://scripts/houses
 res://assets/images/effects
-res://scenes/fish/individual
 res://scripts/globals
-res://scenes/fish
 res://
 res://scenes/player

@@ -9,7 +9,7 @@ var arcStart := ((baseIncr * baseIncr)/2)*-1
 
 func _physics_process(delta):
 	if playerRef:
-		var goalPos = playerRef.position
+		var goalPos = playerRef.global_position
 		var from = rotation
 		for chunk in chunks.get_children():
 			var myDex = chunk.get_index()
