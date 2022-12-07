@@ -10,7 +10,7 @@ extends Area2D
 @onready @export var solo: bool = false
 
 #Other Variables----------------------------------------------------------------
-
+@onready var caught : bool = false ## A safety variable for state swapping 
 @onready var bodySprite: Sprite2D = $Sprite2D
 @onready var bloodSplat: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -29,13 +29,16 @@ func do_shit(body):
 		bodySprite.flip_h = !bodySprite.flip_h
 
 #Sent externally -- from the player scene
-func hit_player():
-	
+func drilled_by_player():
 	swimSpeed = 0
-	
 	bloodSplat.visible = true
 	bloodSplat.play("default")
 	bodySprite.visible = false
 	await bloodSplat.animation_finished
-	
 	queue_free()
+
+func state_swap():
+	monitorable = false
+	monitoring = false
+	$CollisionShape2D.disabled = true
+	set_physics_process(false)

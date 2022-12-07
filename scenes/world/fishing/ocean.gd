@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var player := $Player
+@onready var player := $PlayerPackage/Player
 @onready var camera: Camera2D = $Camera2D
 
 @onready var fishGenerator = $FishGenerator

@@ -14,17 +14,17 @@ func _ready() -> void:
 	pass
 
 func _on_timer_timeout() -> void:
-	
-	#Using all this excessive randoming to bypass the seed-based psuedo-random that GoDot uses
-	#Remove randomize and random_num to generate 'random' numbers that stay static past first launch
-	random_num.randomize()
-	
-	var dex = random_num.randi_range( 0, spawnableFish.size()-1 )
-	
-	var nFish = spawnableFish[dex].instantiate()
-	
-	#Give the X-axis spawn some variance
-	var xVar = random_num.randi_range( 50, spawnBounds.shape.get_rect().size.x )
-	self.get_parent().add_child(nFish)
-	nFish.global_position = Vector2(xVar, global_position.y)
-	$Timer.wait_time = random_num.randf_range(spawnTimingRange.x,spawnTimingRange.y)
+	if Globals.ascending == false:
+		#Using all this excessive randoming to bypass the seed-based psuedo-random that GoDot uses
+		#Remove randomize and random_num to generate 'random' numbers that stay static past first launch
+		random_num.randomize()
+		
+		var dex = random_num.randi_range( 0, spawnableFish.size()-1 )
+		
+		var nFish = spawnableFish[dex].instantiate()
+		
+		#Give the X-axis spawn some variance
+		var xVar = random_num.randi_range( 50, spawnBounds.shape.get_rect().size.x )
+		self.get_parent().add_child(nFish)
+		nFish.global_position = Vector2(xVar, global_position.y)
+		$Timer.wait_time = random_num.randf_range(spawnTimingRange.x,spawnTimingRange.y)

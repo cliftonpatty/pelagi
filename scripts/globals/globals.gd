@@ -1,6 +1,6 @@
 extends Node
 
-var dropSpeed = 300
+var dropSpeed = 500
 var depth = 2000
 
 var ascending: bool = false

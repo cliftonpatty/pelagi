@@ -4,12 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://b2sg7aps8j0nd" path="res://assets/images/fish/sucker.png" id="2_xo63h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aruog"]
-size = Vector2(150, 68)
+size = Vector2(124, 40)
 
 [node name="Sucker" instance=ExtResource("1_m5xvx")]
 swimSpeed = 400
 
 [node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.106176, 0.106176)
 texture = ExtResource("2_xo63h")
 flip_h = true
 

@@ -4,11 +4,12 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Body/ShipSprite
 @onready var hookSprite: Sprite2D = $Body/Hook
 @onready var body = $Body
-@onready var caughtFish = $CaughtFish
+
 #Actions and States-------------------------------------------------------------
 
 @onready var drillActive: bool = false
 
+signal caught_a_fish(fish)
 
 const SPEED: float = 600.0
 
@@ -16,7 +17,7 @@ func _physics_process(delta: float) -> void:
 	position.y += Globals.dropSpeed * delta
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("LeftMove", "RightMove")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -55,13 +56,24 @@ func _input(event: InputEvent) -> void:
 		drillActive = false
 		sprite.frame = 0
 
-func _on_fish_detection_area_entered(area: Area2D) -> void:
-	if area.is_in_group('fish'):
+func _on_fish_detection_area_entered(fish: Area2D) -> void:
+	if fish.is_in_group('fish'):
 		if drillActive and !Globals.ascending:
-			area.hit_player()
-			
-		if drillActive == false and Globals.ascending == false:
-			Globals.trigger_ascent()
-			$Bubbles.visible = false
-			sprite.frame = 2
-			hookSprite.visible = true
+			fish.drilled_by_player()
+		if drillActive == false:
+			if !fish.caught:
+				if Globals.ascending == false:
+					Globals.trigger_ascent()
+					$Bubbles.visible = false
+					sprite.frame = 2
+					hookSprite.visible = true
+					fish.caught = true
+					call_deferred("catch_a_fish", fish)
+				else:
+					fish.caught = true
+					call_deferred("catch_a_fish", fish)
+
+func catch_a_fish(fish):
+		
+		fish.state_swap()
+		emit_signal("caught_a_fish", fish)

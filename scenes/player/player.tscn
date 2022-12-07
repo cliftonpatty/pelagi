@@ -1,13 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv6q0wn7wrkvg"]
+[gd_scene load_steps=9 format=3 uid="uid://dv6q0wn7wrkvg"]
 
 [ext_resource type="Texture2D" uid="uid://tovmti8pu18e" path="res://assets/images/player/base_ship.png" id="1_7pgf2"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_w1qbe"]
+[ext_resource type="Texture2D" uid="uid://b7kvb3b5asp1c" path="res://assets/images/player/false_lighting-background.png" id="2_5ebji"]
 [ext_resource type="Texture2D" uid="uid://b101g41ck2g48" path="res://assets/images/effects/Bubble.png" id="2_jowck"]
 [ext_resource type="Texture2D" uid="uid://bcvvb7onaaw13" path="res://assets/images/player/base_ship-hook.png" id="3_lsajb"]
-[ext_resource type="PackedScene" uid="uid://cj7enlu4qarvo" path="res://scenes/player/caught_fish.tscn" id="5_sw000"]
+[ext_resource type="Texture2D" uid="uid://bwjvuu24ddwki" path="res://assets/images/player/false_lighting.png" id="5_qh56r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wswkd"]
-radius = 82.0061
+radius = 47.1699
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tkqo6"]
 radius = 52.0
@@ -17,26 +18,10 @@ height = 184.0
 motion_mode = 1
 script = ExtResource("1_w1qbe")
 
-[node name="Body" type="Node2D" parent="."]
-
-[node name="ShipSprite" type="Sprite2D" parent="Body"]
-position = Vector2(0, 9.53674e-07)
-scale = Vector2(0.699248, 0.699248)
-texture = ExtResource("1_7pgf2")
-hframes = 3
-
-[node name="Hook" type="Sprite2D" parent="Body"]
-visible = false
-position = Vector2(1.00002, 64)
-scale = Vector2(0.699248, 0.699248)
-texture = ExtResource("3_lsajb")
-offset = Vector2(6.407, 70)
-
-[node name="FishDetection" type="Area2D" parent="Body"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/FishDetection"]
-position = Vector2(0, 60)
-shape = SubResource("CircleShape2D_wswkd")
+[node name="FalseLighting-background" type="Sprite2D" parent="."]
+position = Vector2(2, -10)
+scale = Vector2(0.467227, 0.467227)
+texture = ExtResource("2_5ebji")
 
 [node name="Bubbles" type="CPUParticles2D" parent="."]
 position = Vector2(1, -70)
@@ -48,11 +33,36 @@ gravity = Vector2(0, -980)
 scale_amount_min = 0.01
 scale_amount_max = 0.2
 
+[node name="Body" type="Node2D" parent="."]
+
+[node name="ShipSprite" type="Sprite2D" parent="Body"]
+texture_filter = 6
+position = Vector2(-0.0375786, 9.53674e-07)
+scale = Vector2(0.403841, 0.403972)
+texture = ExtResource("1_7pgf2")
+hframes = 3
+
+[node name="Hook" type="Sprite2D" parent="Body"]
+visible = false
+position = Vector2(1, 39)
+scale = Vector2(0.420265, 0.420265)
+texture = ExtResource("3_lsajb")
+offset = Vector2(6.407, 70)
+
+[node name="FishDetection" type="Area2D" parent="Body"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/FishDetection"]
+position = Vector2(0, 37)
+shape = SubResource("CircleShape2D_wswkd")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CapsuleShape2D_tkqo6")
 
-[node name="CaughtFish" parent="." instance=ExtResource("5_sw000")]
+[node name="FalseLighting" type="Sprite2D" parent="."]
+position = Vector2(1, -17)
+scale = Vector2(0.569201, 0.569201)
+texture = ExtResource("5_qh56r")
 
 [connection signal="area_entered" from="Body/FishDetection" to="." method="_on_fish_detection_area_entered"]
 [connection signal="body_entered" from="Body/FishDetection" to="." method="_on_fish_detection_body_entered"]

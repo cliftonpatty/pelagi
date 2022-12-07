@@ -1,0 +1,78 @@
+extends Node2D
+
+@onready var chunks : Node2D = $Chunks
+var playerRef : CharacterBody2D
+
+#Line variables - increment is how much each fish rotates per step
+var baseIncr := 10
+var arcStart := ((baseIncr * baseIncr)/2)*-1
+
+func _physics_process(delta):
+	if playerRef:
+		var goalPos = playerRef.position
+		var from = rotation
+		for chunk in chunks.get_children():
+			var myDex = chunk.get_index()
+			
+			if myDex > 0:
+				chunk.global_position.x = lerp( 
+					chunk.global_position.x, 
+					chunks.get_child(myDex-1).global_position.x, 
+					5 * delta 
+					)
+				chunk.global_position.y = lerp( 
+					chunk.global_position.y, 
+					chunks.get_child(myDex-1).global_position.y, 
+					5 * delta 
+					)
+				chunk.rotation = lerp_angle(
+					chunk.rotation, 
+					chunks.get_child(myDex-1).rotation, 
+					5 * delta
+					)
+			else:
+				chunk.global_position.x = lerp( 
+					chunk.global_position.x, 
+					goalPos.x, 
+					5 * delta 
+					)
+				chunk.global_position.y = lerp( 
+					chunk.global_position.y, 
+					goalPos.y + 10, 
+					5 * delta 
+					)
+				chunk.rotation = lerp_angle(
+					chunk.rotation, 
+					deg_to_rad(playerRef.get_real_velocity().x)/8, 
+					5 * delta
+					)
+
+func new_fish_onboarding(fish):
+	
+	var hookGroup = find_open_group()
+	
+	var arcPosition = arcStart + (baseIncr * hookGroup.get_child_count())
+	
+	if fish.get_parent() == null:
+		hookGroup.add_child(fish)
+		fish.global_position = hookGroup.global_position
+		fish.rotation = deg_to_rad((arcPosition * 4) - 90)
+	
+func find_open_group():
+	if chunks.get_child_count() > 0:
+		var lastChunk = chunks.get_child(chunks.get_child_count()-1)
+		if lastChunk.get_child_count() < 5:
+			return lastChunk
+		else:
+			var newNode = makeNewNode(chunks.get_child_count())
+			return newNode
+	else:
+		var newNode = makeNewNode(chunks.get_child_count())
+		return newNode
+
+func makeNewNode(dex):
+	var newNode = Node2D.new()
+	chunks.add_child(newNode)
+	newNode.name = 'FishHunk' + str(dex)
+	newNode.position = playerRef.position
+	return newNode

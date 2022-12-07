@@ -1,16 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://liicqsy504wo"]
+[gd_scene load_steps=13 format=3 uid="uid://liicqsy504wo"]
 
 [ext_resource type="PackedScene" uid="uid://dv6q0wn7wrkvg" path="res://scenes/player/player.tscn" id="1_2kdgh"]
 [ext_resource type="Script" path="res://scenes/world/fishing/ocean.gd" id="1_3dxfq"]
+[ext_resource type="Script" path="res://scripts/houses/player_house.gd" id="2_afyav"]
 [ext_resource type="PackedScene" uid="uid://bw5w7wh8swj1v" path="res://scenes/world/fishing/world_generation/world_generator.tscn" id="3_65yjv"]
 [ext_resource type="Texture2D" uid="uid://1ajkkdvwgxe1" path="res://assets/textures/cross-hatch.jpg" id="4_8s3h2"]
+[ext_resource type="PackedScene" uid="uid://cj7enlu4qarvo" path="res://scenes/player/fish_line.tscn" id="4_a0x25"]
 [ext_resource type="PackedScene" uid="uid://bnknqobfg85k6" path="res://scenes/world/fishing/world_generation/fish_generator.tscn" id="5_cin7k"]
 [ext_resource type="PackedScene" uid="uid://d4dk0u2qo3m17" path="res://scenes/fish/individual/pig.tscn" id="6_l1klc"]
 [ext_resource type="PackedScene" uid="uid://kbbi2lrdbrc1" path="res://scenes/fish/individual/cuddle.tscn" id="7_2tjgf"]
 [ext_resource type="PackedScene" uid="uid://bpobjrw060lnd" path="res://scenes/fish/individual/sucker.tscn" id="8_ywd3y"]
+[ext_resource type="Script" path="res://scenes/world/fishing/background_follow.gd" id="11_i0ayd"]
+[ext_resource type="Texture2D" uid="uid://bu23uv53dnt8o" path="res://assets/textures/background-water_generic.jpg" id="11_qe73a"]
 
 [node name="Ocean" type="Node2D"]
 script = ExtResource("1_3dxfq")
+
+[node name="PlayerPackage" type="Node2D" parent="."]
+script = ExtResource("2_afyav")
+
+[node name="Player" parent="PlayerPackage" groups=["player"] instance=ExtResource("1_2kdgh")]
+position = Vector2(909, 11)
+
+[node name="FishLine" parent="PlayerPackage" instance=ExtResource("4_a0x25")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 top_level = true
@@ -31,12 +43,10 @@ offset_right = 940.0
 offset_bottom = 524.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/Control"]
+layout_mode = 0
 offset_right = 224.0
 offset_bottom = 82.0
 text = "Depth Reading"
-
-[node name="Player" parent="." groups=["player"] instance=ExtResource("1_2kdgh")]
-position = Vector2(909, 11)
 
 [node name="WorldGenerator" parent="." instance=ExtResource("3_65yjv")]
 parentTexture = ExtResource("4_8s3h2")
@@ -45,8 +55,9 @@ parentTexture = ExtResource("4_8s3h2")
 position = Vector2(1917, 5)
 
 [node name="FishGenerator" parent="." instance=ExtResource("5_cin7k")]
-position = Vector2(927, 1019)
+position = Vector2(924, 622)
 spawnableFish = [ExtResource("7_2tjgf"), ExtResource("6_l1klc"), ExtResource("8_ywd3y")]
+spawnTimingRange = Vector2(0.1, 0.2)
 metadata/_edit_group_ = true
 
 [node name="Area2D" parent="FishGenerator" index="0"]
@@ -54,6 +65,34 @@ position = Vector2(-2, 2)
 
 [node name="CollisionShape2D" parent="FishGenerator/Area2D" index="0"]
 position = Vector2(4, 1)
+
+[node name="BackgroundFollow" type="Node2D" parent="."]
+position = Vector2(952, 985)
+scale = Vector2(0.978, 1)
+script = ExtResource("11_i0ayd")
+
+[node name="top" type="Sprite2D" parent="BackgroundFollow"]
+z_index = -9
+position = Vector2(0, 19)
+scale = Vector2(1, 0.981)
+texture = ExtResource("11_qe73a")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="BackgroundFollow/top"]
+position = Vector2(19.4274, 1066.26)
+scale = Vector2(15.1217, 0.592152)
+
+[node name="bottom" type="Sprite2D" parent="BackgroundFollow"]
+z_index = -9
+position = Vector2(0, 1984)
+scale = Vector2(1, 1)
+texture = ExtResource("11_qe73a")
+
+[node name="VisibleOnScreenNotifier2D2" type="VisibleOnScreenNotifier2D" parent="BackgroundFollow/bottom"]
+position = Vector2(-10.225, 1057)
+scale = Vector2(15.1217, 0.612517)
+
+[connection signal="screen_exited" from="BackgroundFollow/top/VisibleOnScreenNotifier2D" to="BackgroundFollow" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_exited" from="BackgroundFollow/bottom/VisibleOnScreenNotifier2D2" to="BackgroundFollow" method="_on_visible_on_screen_notifier_2d_2_screen_exited"]
 
 [editable path="WorldGenerator"]
 [editable path="FishGenerator"]
