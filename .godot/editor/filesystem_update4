@@ -1,10 +1,7 @@
-res://scenes/world/fishing/ocean.tscn
+res://scenes/tangibles/fish/directional_swimmers/armored_swimmers/armored_swimmers.tscn
 res://scenes/world/fishing/world_generation/cave_walls.gd
-res://scenes/world/fishing/world_generation/world_generator.tscn
-res://scenes/world/fishing/world_generation/cave_walls.tscn
-res://scenes/tangibles/gems/gem_base.tscn
+res://scenes/tangibles/fish/directional_swimmers/directional_swimmers.tscn
+res://scenes/world/fishing/ocean.tscn
+res://scenes/tangibles/fish/directional_swimmers/pig.tscn
 res://scenes/tangibles/fish/fish_base.tscn
-res://scenes/player/player.tscn
-res://scenes/tangibles/gems/individual/blue_gem.tscn
-res://scenes/world/fishing/world_generation/fish_generator.tscn
-res://scenes/tangibles/fish/horizontal_swimmer.tscn
+res://scenes/tangibles/fish/fish_base.gd

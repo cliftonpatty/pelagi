@@ -89,6 +89,10 @@ func _on_fish_detection_area_entered(tangible: Area2D) -> void:
 					tangible.caught = true
 					call_deferred("catch_a_fish", tangible)
 
+func _on_fish_detection_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
 func catch_a_fish(fish):
 		fish.state_swap()
 		emit_signal("caught_a_fish", fish)
+

@@ -35,7 +35,7 @@ animations = [{
 [node name="FishBase" type="Area2D" groups=["fish"]]
 script = ExtResource("1_88n38")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="MainSprite" type="Sprite2D" parent="."]
 texture_filter = 6
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_4vrjg")

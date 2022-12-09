@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name SingleFishBase
+
 #Export Variables---------------------------------------------------------------
 @export_category("Fish Stats")
 ##How fast the fish can swim 
@@ -11,40 +13,39 @@ extends Area2D
 
 #Other Variables----------------------------------------------------------------
 @onready var caught : bool = false ## A safety variable for state swapping 
-@onready var bodySprite: Sprite2D = $Sprite2D
+@onready var bodySprite: Sprite2D = $MainSprite
 @onready var bloodSplat: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
-	var which_dir = randi_range(-10, 10)
-	if which_dir > 0:
-		toggle_dir()
-	self.body_entered.connect(do_shit)
+	self.body_entered.connect(our_body_entered)
+	self.area_entered.connect(our_area_entered)
+	print('mom ready')
+	children_ready()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	position.x += swimSpeed * delta
+#A functional for inherited scenes, so they don't overwrite parent's ready
+#This will be overwritten in children scenes 
+func children_ready():
+	pass
 
-func do_shit(body):
+func our_area_entered(area : Area2D):
+	if area.is_in_group('surface'):
+		surface_struck()
+
+func surface_struck():
+	pass
+
+func our_body_entered(body):
 	if body.is_in_group('player'):
 		pass
 	else:
-		toggle_dir()
+		hit_a_wall()
 
-func toggle_dir():
-	swimSpeed *= -1
-	bodySprite.flip_h = !bodySprite.flip_h
+func hit_a_wall():
+	pass
 
 #Sent externally -- from the player scene
 func drilled_by_player():
-	swimSpeed = 0
-	bloodSplat.visible = true
-	bloodSplat.play("default")
-	bodySprite.visible = false
-	await bloodSplat.animation_finished
-	queue_free()
+	pass
 
 func state_swap():
-	monitorable = false
-	monitoring = false
-	$CollisionShape2D.disabled = true
-	set_physics_process(false)
+	pass

@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://e7qbgr4cg6pn"]
+
+[ext_resource type="PackedScene" uid="uid://b6foh4q7d7jx6" path="res://scenes/tangibles/fish/directional_swimmers/directional_swimmers.tscn" id="1_t2pyy"]
+[ext_resource type="Texture2D" uid="uid://st8kxo8pqp0x" path="res://assets/images/tangibles/fish/armored_chub.png" id="2_3tvkm"]
+[ext_resource type="Texture2D" uid="uid://bgr6lfh5euhu4" path="res://assets/images/tangibles/fish/chub.png" id="3_8l88p"]
+[ext_resource type="Texture2D" uid="uid://bcu12dc8t4r3q" path="res://assets/images/effects/chub_armour_broken.png" id="4_wqv01"]
+
+[sub_resource type="GDScript" id="GDScript_dplk8"]
+script/source = "extends DirectionalSwimmer
+
+#-------------------------------------------------------------------------------
+#INHERITED, Non-exported variables
+#caught : bool = false ## A safety variable for state swapping 
+#bodySprite: Sprite2D = $MainSprite
+#bloodSplat: AnimatedSprite2D = $AnimatedSprite2D
+#-------------------------------------------------------------------------------
+
+@export_category(\"Armored Fish\")
+@export var newSprite : CompressedTexture2D = null
+
+#-------------------------------------------------------------------------------
+
+@onready var bodyShrapnel : CPUParticles2D = $CPUParticles2D
+
+#Makes sure you can't immediatley drill the fish you just broke the armor from 
+var armorBreakProtection = false
+
+#THE BASE CLASS FOR ALL FISH - Barring Boss Fish, Rare Exceptions
+#Comment out any parent'ed functions not in use, as they will be overwritten
+#Parented functions have a turning arrow icon to the left of the line number
+
+#func children_ready() -> void:
+
+
+#func _physics_process(delta: float) -> void:
+
+
+#Hit a wall on the left or right - surface collision is a seperate func
+#func hit_a_wall():
+
+
+#Hit the surface, only relevant for some fish (eg vertical swimmers)
+#func surface_struck():
+
+
+#func toggle_dir():
+
+
+#Has an active drill contacted this fish?
+func drilled_by_player():
+	
+	if !armorBreakProtection:
+		armorBreakProtection = true
+		bodyShrapnel.emitting = true
+		bodySprite.set_texture(newSprite)
+		
+		await get_tree().create_timer(3).timeout
+		armorBreakProtection = true
+		bodyShrapnel.emitting = false
+	
+
+#func state_swap():
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxd1h"]
+size = Vector2(204, 70)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h6jcn"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="ArmouredSwimmers" instance=ExtResource("1_t2pyy")]
+script = SubResource("GDScript_dplk8")
+newSprite = ExtResource("3_8l88p")
+
+[node name="MainSprite" parent="." index="0"]
+scale = Vector2(0.468665, 0.468665)
+texture = ExtResource("2_3tvkm")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_wxd1h")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="3"]
+material = SubResource("CanvasItemMaterial_h6jcn")
+position = Vector2(-17, 0)
+emitting = false
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("4_wqv01")
+emission_shape = 1
+emission_sphere_radius = 80.93
+direction = Vector2(0, -10)
+spread = 30.0
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+angular_velocity_min = -131.47
+angular_velocity_max = 180.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+anim_offset_max = 1.0

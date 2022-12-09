@@ -8,6 +8,22 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "SingleFishBase",
+"class": &"DirectionalSwimmer",
+"language": &"GDScript",
+"path": "res://scenes/tangibles/fish/directional_swimmers/directional_swimmers.gd"
+}, {
+"base": "Area2D",
+"class": &"SingleFishBase",
+"language": &"GDScript",
+"path": "res://scenes/tangibles/fish/fish_base.gd"
+}]
+_global_script_class_icons={
+"DirectionalSwimmer": "",
+"SingleFishBase": ""
+}
+
 [application]
 
 config/name="Repos"

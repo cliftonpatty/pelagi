@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://liicqsy504wo"]
+[gd_scene load_steps=15 format=3 uid="uid://liicqsy504wo"]
 
 [ext_resource type="PackedScene" uid="uid://dv6q0wn7wrkvg" path="res://scenes/player/player.tscn" id="1_2kdgh"]
 [ext_resource type="Script" path="res://scenes/world/fishing/ocean.gd" id="1_3dxfq"]
@@ -7,12 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://1ajkkdvwgxe1" path="res://assets/textures/cross-hatch.jpg" id="4_8s3h2"]
 [ext_resource type="PackedScene" uid="uid://cj7enlu4qarvo" path="res://scenes/player/fish_line.tscn" id="4_a0x25"]
 [ext_resource type="PackedScene" uid="uid://bnknqobfg85k6" path="res://scenes/world/fishing/world_generation/fish_generator.tscn" id="5_cin7k"]
-[ext_resource type="PackedScene" path="res://scenes/tangibles/fish/individual/pig.tscn" id="6_l1klc"]
-[ext_resource type="PackedScene" path="res://scenes/tangibles/fish/individual/cuddle.tscn" id="7_2tjgf"]
-[ext_resource type="PackedScene" path="res://scenes/tangibles/fish/individual/sucker.tscn" id="8_ywd3y"]
+[ext_resource type="PackedScene" uid="uid://cj6tkaonui8vf" path="res://scenes/tangibles/gems/individual/blue_gem.tscn" id="9_cxgmr"]
+[ext_resource type="PackedScene" uid="uid://m0blxtqmnxug" path="res://scenes/tangibles/fish/directional_swimmers/pig.tscn" id="9_d2a5l"]
+[ext_resource type="PackedScene" uid="uid://e7qbgr4cg6pn" path="res://scenes/tangibles/fish/directional_swimmers/armored_swimmers/armored_swimmers.tscn" id="11_0nmdk"]
 [ext_resource type="Texture2D" uid="uid://bu23uv53dnt8o" path="res://assets/textures/background-water_generic.jpg" id="11_qe73a"]
 [ext_resource type="PackedScene" uid="uid://betcukpb07lly" path="res://scenes/world/fishing/claw.tscn" id="12_80ql6"]
-[ext_resource type="PackedScene" uid="uid://cj6tkaonui8vf" path="res://scenes/tangibles/gems/individual/blue_gem.tscn" id="12_mgatx"]
 [ext_resource type="Texture2D" uid="uid://c6xhty61kb3qh" path="res://assets/images/world/backgrounds/sunset.jpg" id="13_kon01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0m0ap"]
@@ -27,7 +26,7 @@ position = Vector2(921, -575)
 scale = Vector2(2.38869, 0.648427)
 texture = ExtResource("13_kon01")
 
-[node name="DepthAndSurface" type="Area2D" parent="."]
+[node name="DepthAndSurface" type="Area2D" parent="." groups=["surface"]]
 position = Vector2(907, 18)
 metadata/_edit_group_ = true
 
@@ -60,6 +59,7 @@ offset_right = 940.0
 offset_bottom = 524.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/Control"]
+layout_mode = 0
 offset_right = 224.0
 offset_bottom = 82.0
 theme_override_font_sizes/normal_font_size = 0
@@ -74,8 +74,8 @@ position = Vector2(1917, 5)
 
 [node name="FishGenerator" parent="." instance=ExtResource("5_cin7k")]
 position = Vector2(924, 622)
-spawnableFish = [ExtResource("7_2tjgf"), ExtResource("6_l1klc"), ExtResource("8_ywd3y")]
-spawnableGems = [ExtResource("12_mgatx")]
+spawnableFish = [ExtResource("11_0nmdk"), ExtResource("9_d2a5l")]
+spawnableGems = [ExtResource("9_cxgmr")]
 spawnTimingRange = Vector2(0.1, 0.2)
 metadata/_edit_group_ = true
 
@@ -127,6 +127,9 @@ texture = ExtResource("11_qe73a")
 [node name="Claw" parent="." instance=ExtResource("12_80ql6")]
 position = Vector2(897.811, -523)
 scale = Vector2(0.590733, 0.641223)
+
+[node name="ArmouredSwimmers" parent="." instance=ExtResource("11_0nmdk")]
+position = Vector2(1200, 451)
 
 [connection signal="body_entered" from="DepthAndSurface" to="." method="_on_depth_and_surface_body_entered"]
 
