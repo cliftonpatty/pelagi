@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://320nsi5e6lk3"]
+
+[ext_resource type="PackedScene" uid="uid://b6foh4q7d7jx6" path="res://scenes/tangibles/fish/directional_swimmers/directional_swimmers.tscn" id="1_lfk26"]
+[ext_resource type="Texture2D" uid="uid://ypjb8q06wddw" path="res://assets/images/tangibles/fish/little_foot.png" id="2_fybl6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q32c2"]
+radius = 27.0
+
+[node name="LittleFoot" instance=ExtResource("1_lfk26")]
+swimSpeed = 650
+
+[node name="MainSprite" parent="." index="0"]
+scale = Vector2(0.313167, 0.313167)
+texture = ExtResource("2_fybl6")
+flip_h = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(15, -14)
+shape = SubResource("CircleShape2D_q32c2")

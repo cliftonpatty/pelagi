@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ouejmgjh232p"]
+[gd_scene load_steps=19 format=3 uid="uid://ouejmgjh232p"]
 
 [ext_resource type="PackedScene" uid="uid://dv6q0wn7wrkvg" path="res://scenes/player/player.tscn" id="1_2kdgh"]
 [ext_resource type="Script" path="res://scenes/world/fishing/ocean.gd" id="1_3dxfq"]
@@ -7,10 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://1ajkkdvwgxe1" path="res://assets/textures/cross-hatch.jpg" id="4_8s3h2"]
 [ext_resource type="PackedScene" uid="uid://cj7enlu4qarvo" path="res://scenes/player/fish_line.tscn" id="4_a0x25"]
 [ext_resource type="PackedScene" uid="uid://bnknqobfg85k6" path="res://scenes/world/fishing/world_generation/fish_generator.tscn" id="5_cin7k"]
+[ext_resource type="PackedScene" uid="uid://cn0own4llt3nq" path="res://scenes/tangibles/fish/directional_swimmers/pustulus.tscn" id="9_287yw"]
 [ext_resource type="PackedScene" uid="uid://m0blxtqmnxug" path="res://scenes/tangibles/fish/directional_swimmers/pig.tscn" id="9_d2a5l"]
 [ext_resource type="PackedScene" uid="uid://e7qbgr4cg6pn" path="res://scenes/tangibles/fish/directional_swimmers/armored_swimmers/armored_swimmers.tscn" id="11_0nmdk"]
 [ext_resource type="PackedScene" uid="uid://cggq5h2amdljm" path="res://scenes/tangibles/fish/directional_swimmers/spear.tscn" id="11_o6wdg"]
 [ext_resource type="Texture2D" uid="uid://bu23uv53dnt8o" path="res://assets/textures/background-water_generic.jpg" id="11_qe73a"]
+[ext_resource type="PackedScene" uid="uid://320nsi5e6lk3" path="res://scenes/tangibles/fish/directional_swimmers/little_foot.tscn" id="12_6nfpg"]
 [ext_resource type="PackedScene" uid="uid://betcukpb07lly" path="res://scenes/world/fishing/claw.tscn" id="12_80ql6"]
 [ext_resource type="PackedScene" uid="uid://dfm8h0n1nf7ab" path="res://scenes/tangibles/fish/directional_swimmers/cuddle.tscn" id="12_yei50"]
 [ext_resource type="Texture2D" uid="uid://c6xhty61kb3qh" path="res://assets/images/world/backgrounds/sunset.jpg" id="13_kon01"]
@@ -71,11 +73,14 @@ position = Vector2(0, -40)
 parentTexture = ExtResource("4_8s3h2")
 
 [node name="RightMargin" parent="WorldGenerator" index="0"]
-position = Vector2(1917, 5)
+position = Vector2(2936, 5)
+
+[node name="LeftMargin" parent="WorldGenerator" index="1"]
+position = Vector2(-295, 0)
 
 [node name="FishGenerator" parent="." instance=ExtResource("5_cin7k")]
 position = Vector2(924, 622)
-spawnableFish = [ExtResource("11_0nmdk"), ExtResource("9_d2a5l"), ExtResource("11_o6wdg"), ExtResource("12_yei50")]
+spawnableFish = [ExtResource("9_287yw"), ExtResource("9_d2a5l"), ExtResource("11_o6wdg"), ExtResource("12_6nfpg"), ExtResource("12_yei50"), ExtResource("11_0nmdk")]
 spawnableGems = [ExtResource("15_32gqb")]
 spawnTimingRange = Vector2(0.1, 0.2)
 metadata/_edit_group_ = true
@@ -93,36 +98,36 @@ scale = Vector2(0.978, 1)
 [node name="top" type="Sprite2D" parent="LazyBackground"]
 z_index = -9
 texture_repeat = 2
-position = Vector2(985.685, 3109)
-scale = Vector2(1.00409, 3.87525)
+position = Vector2(1351.8, 5686)
+scale = Vector2(1.679, 6.492)
 texture = ExtResource("11_qe73a")
 
 [node name="top2" type="Sprite2D" parent="LazyBackground"]
 z_index = -9
 texture_repeat = 2
-position = Vector2(985.685, 10819)
-scale = Vector2(1.00409, 3.87525)
+position = Vector2(1351.8, 18569)
+scale = Vector2(1.679, 6.492)
 texture = ExtResource("11_qe73a")
 
 [node name="top3" type="Sprite2D" parent="LazyBackground"]
 z_index = -9
 texture_repeat = 2
-position = Vector2(985.685, 18547)
-scale = Vector2(1.00409, 3.87525)
+position = Vector2(1351.8, 31554)
+scale = Vector2(1.679, 6.492)
 texture = ExtResource("11_qe73a")
 
 [node name="top4" type="Sprite2D" parent="LazyBackground"]
 z_index = -9
 texture_repeat = 2
-position = Vector2(985.685, 26297)
-scale = Vector2(1.00409, 3.87525)
+position = Vector2(1351.8, 39304)
+scale = Vector2(1.679, 6.492)
 texture = ExtResource("11_qe73a")
 
 [node name="top5" type="Sprite2D" parent="LazyBackground"]
 z_index = -9
 texture_repeat = 2
-position = Vector2(985.685, 34020)
-scale = Vector2(1.00409, 3.87525)
+position = Vector2(1351.8, 47027)
+scale = Vector2(1.679, 6.492)
 texture = ExtResource("11_qe73a")
 
 [node name="Claw" parent="." instance=ExtResource("12_80ql6")]

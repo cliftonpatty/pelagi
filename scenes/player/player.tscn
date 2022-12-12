@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dv6q0wn7wrkvg"]
+[gd_scene load_steps=10 format=3 uid="uid://dv6q0wn7wrkvg"]
 
 [ext_resource type="Texture2D" uid="uid://tovmti8pu18e" path="res://assets/images/player/base_ship.png" id="1_7pgf2"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_w1qbe"]
 [ext_resource type="Texture2D" uid="uid://b7kvb3b5asp1c" path="res://assets/images/player/false_lighting-background.png" id="2_5ebji"]
 [ext_resource type="Texture2D" uid="uid://b101g41ck2g48" path="res://assets/images/effects/Bubble.png" id="2_jowck"]
+[ext_resource type="Texture2D" uid="uid://c4q1ofyfs34wr" path="res://assets/images/tangibles/fish/Asset 10.png" id="2_ueykn"]
 [ext_resource type="Texture2D" uid="uid://bcvvb7onaaw13" path="res://assets/images/player/base_ship-hook.png" id="3_lsajb"]
 [ext_resource type="Texture2D" uid="uid://bwjvuu24ddwki" path="res://assets/images/player/false_lighting.png" id="5_qh56r"]
 
@@ -17,6 +18,10 @@ height = 184.0
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_w1qbe")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = ExtResource("2_ueykn")
 
 [node name="FalseLighting-background" type="Sprite2D" parent="."]
 position = Vector2(2, -10)
@@ -36,6 +41,7 @@ scale_amount_max = 0.2
 [node name="Body" type="Node2D" parent="."]
 
 [node name="ShipSprite" type="Sprite2D" parent="Body"]
+light_mask = 0
 texture_filter = 6
 position = Vector2(-0.0375786, 9.53674e-07)
 scale = Vector2(0.403841, 0.403972)
