@@ -6,7 +6,6 @@ class_name DirectionalSwimmer
 
 #FROM PARENT - click arrow on left to travel there
 func children_ready() -> void:
-	
 	#Simple random to determine if fish is born swimming left or right 
 	if !verticalSwimmer:
 		var which_dir = randi_range(-10, 10)
@@ -34,10 +33,16 @@ func surface_struck():
 
 func toggle_dir():
 	swimSpeed *= -1
-	bodySprite.flip_h = !bodySprite.flip_h
-		
+	if verticalSwimmer:
+		bodySprite.flip_v = !bodySprite.flip_v
+	else:
+		bodySprite.flip_h = !bodySprite.flip_h
+
 #FROM PARENT - click arrow on left to travel there
 func drilled_by_player():
+	kill_fish()
+	
+func kill_fish():
 	swimSpeed = 0
 	bloodSplat.visible = true
 	bloodSplat.play("default")
@@ -45,8 +50,10 @@ func drilled_by_player():
 	await bloodSplat.animation_finished
 	queue_free()
 	
-func state_swap():
+func get_caught() -> bool :
 	monitorable = false
 	monitoring = false
 	$CollisionShape2D.disabled = true
 	set_physics_process(false)
+	
+	return true

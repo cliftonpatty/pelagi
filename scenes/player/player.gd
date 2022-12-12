@@ -65,17 +65,10 @@ func _input(event: InputEvent) -> void:
 		sprite.frame = 0
 
 func _on_fish_detection_area_entered(tangible: Area2D) -> void:
-	#Is it a gem?
-	if tangible.is_in_group('gems'):
-		if drillActive and !Globals.ascending:
-			print('GEM')
+	if drillActive and !Globals.ascending:
+		if tangible.is_in_group('drillable'):
 			tangible.drilled_by_player()
-	#Is it a fish?
 	if tangible.is_in_group('fish'):
-		#Is the drill on and are we heading down?
-		if drillActive and !Globals.ascending:
-			tangible.drilled_by_player()
-		#Is the drill off? If so, we need to catch the first fish and head up
 		if drillActive == false:
 			if !tangible.caught:
 				if Globals.ascending == false:
@@ -83,16 +76,12 @@ func _on_fish_detection_area_entered(tangible: Area2D) -> void:
 					$Bubbles.visible = false
 					sprite.frame = 2
 					hookSprite.visible = true
+				if tangible.catchable:
 					tangible.caught = true
 					call_deferred("catch_a_fish", tangible)
-				else:
-					tangible.caught = true
-					call_deferred("catch_a_fish", tangible)
-
-func _on_fish_detection_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
 
 func catch_a_fish(fish):
-		fish.state_swap()
-		emit_signal("caught_a_fish", fish)
+		var fishCaught = fish.get_caught()
+		if fishCaught:
+			emit_signal("caught_a_fish", fish)
 

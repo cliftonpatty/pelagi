@@ -50,6 +50,8 @@ texture = ExtResource("3_lsajb")
 offset = Vector2(6.407, 70)
 
 [node name="FishDetection" type="Area2D" parent="Body"]
+collision_layer = 2
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/FishDetection"]
 position = Vector2(0, 37)
@@ -65,4 +67,3 @@ scale = Vector2(0.569201, 0.569201)
 texture = ExtResource("5_qh56r")
 
 [connection signal="area_entered" from="Body/FishDetection" to="." method="_on_fish_detection_area_entered"]
-[connection signal="body_entered" from="Body/FishDetection" to="." method="_on_fish_detection_body_entered"]

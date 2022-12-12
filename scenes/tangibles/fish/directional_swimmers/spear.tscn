@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cggq5h2amdljm"]
+
+[ext_resource type="PackedScene" uid="uid://b6foh4q7d7jx6" path="res://scenes/tangibles/fish/directional_swimmers/directional_swimmers.tscn" id="1_sns07"]
+[ext_resource type="Texture2D" uid="uid://oi8n3b5xfh50" path="res://assets/images/tangibles/fish/spear.png" id="2_m78fq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48381"]
+size = Vector2(178, 46)
+
+[node name="Spear" instance=ExtResource("1_sns07")]
+verticalSwimmer = true
+swimSpeed = 150
+rarity = 0.5
+
+[node name="MainSprite" parent="." index="0"]
+position = Vector2(5, 0)
+rotation = 1.5708
+scale = Vector2(0.301923, 0.301923)
+texture = ExtResource("2_m78fq")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_48381")

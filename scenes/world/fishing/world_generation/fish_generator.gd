@@ -13,6 +13,8 @@ extends Node2D
 @onready var spawnBounds: CollisionShape2D = $Area2D/CollisionShape2D
 var random_num = RandomNumberGenerator.new()
 
+var depth: int
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -24,7 +26,7 @@ func _on_timer_timeout() -> void:
 		random_num.randomize()
 		
 		#Spawn a number from -10 to 1, if it's positive, spawn a gem
-		var spawnGem = random_num.randi_range(-30,10)
+		var spawnGem = random_num.randi_range(-100,10)
 		
 		if spawnGem > 0:
 			#A 'random' way to decide which side we spawn it, reusing the spawnGem

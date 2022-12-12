@@ -4,6 +4,7 @@
 extends _BASE_
 
 #THE BASE CLASS FOR ALL FISH - Barring Boss Fish, Rare Exceptions
+#Only use this when instancing a new scene from 'fish_base.tscn'
 #Comment out any parent'ed functions not in use, as they will be overwritten
 #Parented functions have a turning arrow icon to the left of the line number
 
@@ -33,6 +34,9 @@ func toggle_dir():
 func drilled_by_player():
 	pass
 
-
-func state_swap():
+func kill_fish():
+	pass
+	
+func get_caught() -> bool :
+	return true
 	pass

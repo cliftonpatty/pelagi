@@ -6,17 +6,46 @@ extends Node2D
 @onready var fishGenerator = $FishGenerator
 @onready var claw = $Claw
 
+var depth: int
+
 func _physics_process(delta: float) -> void:
-	
 	fishGenerator.position.y += Globals.dropSpeed * delta
 	if Globals.underwater:
-		UI.text = str( int( (player.global_position.distance_to($DepthAndSurface.global_position ) / 100 )) )
-		camera.global_position = lerp( camera.global_position, player.global_position, 20 * delta )
+		
+		fishGenerator.depth = depth
+		
+		depth = int( (player.global_position.distance_to($DepthAndSurface.global_position ) / 100 )) 
+		UI.text = str(depth)
+		
+		if Globals.ascending:
+			player_camera_position( 
+				get_viewport().get_visible_rect().size.y * -0.3,
+				delta
+				)
+		else:
+			player_camera_position( 
+				get_viewport().get_visible_rect().size.y * 0.3,
+				delta
+				)
+			
 	else:
+		fishGenerator.depth = -1
 		UI.text = 'Above Water'
+		
 		camera.global_position = lerp( camera.global_position, claw.global_position, 20 * delta )
 		player.global_position.x = lerp( player.global_position.x, claw.global_position.x, 20 * delta )
-		
+
+
+func player_camera_position(offset, delta):
+	camera.global_position = lerp( 
+		camera.global_position, 
+		Vector2( 
+			player.global_position.x, 
+			player.global_position.y + offset
+			), 
+		5 * delta )
+
+
 func _on_depth_and_surface_body_entered(body: Node2D) -> void:
 	if body.is_in_group('player'):
 		if Globals.underwater:

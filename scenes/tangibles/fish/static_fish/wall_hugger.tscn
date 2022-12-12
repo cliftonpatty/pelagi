@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dae5523suwxch"]
+
+[ext_resource type="PackedScene" uid="uid://bwxuo0b1uiojb" path="res://scenes/tangibles/fish/fish_base.tscn" id="1_24w5t"]
+[ext_resource type="Script" path="res://scenes/tangibles/fish/static_fish/wall_hugger.gd" id="2_brf4v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ilrn"]
+size = Vector2(82, 92)
+
+[node name="WallHugger" instance=ExtResource("1_24w5t")]
+script = ExtResource("2_brf4v")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(3, -3)
+shape = SubResource("RectangleShape2D_4ilrn")

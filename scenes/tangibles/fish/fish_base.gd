@@ -6,20 +6,22 @@ class_name SingleFishBase
 @export_category("Fish Stats")
 ##How fast the fish can swim 
 @export var swimSpeed: int
+##How much is the fish worth if drilled?
+@export var value: int
 ##Rarity of the fish, lower number = more rare (rarer?)
-@onready @export_range(0,1) var rarity = 1
+@onready @export_range(0,1.0) var rarity = 1.0
 ##Is this a fish that only spawns once?
 @onready @export var solo: bool = false
 
 #Other Variables----------------------------------------------------------------
 @onready var caught : bool = false ## A safety variable for state swapping 
+@onready var catchable : bool = true ## Generally true - here for special cases like armored fish
 @onready var bodySprite: Sprite2D = $MainSprite
 @onready var bloodSplat: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
 	self.body_entered.connect(our_body_entered)
 	self.area_entered.connect(our_area_entered)
-	print('mom ready')
 	children_ready()
 
 #A functional for inherited scenes, so they don't overwrite parent's ready
@@ -47,5 +49,5 @@ func hit_a_wall():
 func drilled_by_player():
 	pass
 
-func state_swap():
-	pass
+func get_caught() -> bool :
+	return true
