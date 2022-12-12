@@ -8,6 +8,7 @@ radius = 27.0
 
 [node name="LittleFoot" instance=ExtResource("1_lfk26")]
 swimSpeed = 650
+rarity = 1.0
 
 [node name="MainSprite" parent="." index="0"]
 scale = Vector2(0.313167, 0.313167)

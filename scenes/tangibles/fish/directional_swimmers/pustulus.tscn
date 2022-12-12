@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://d0x6oinj456d3" path="res://assets/images/tangibles/fish/pustulus.png" id="2_5dejd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qj51"]
-size = Vector2(784, 206)
+size = Vector2(514, 124)
 
 [node name="Pustulus" instance=ExtResource("1_s87tj")]
 swimSpeed = 85
 rarity = 0.1
 
 [node name="MainSprite" parent="." index="0"]
-scale = Vector2(0.986028, 0.986028)
+scale = Vector2(0.698603, 0.698603)
 texture = ExtResource("2_5dejd")
 flip_h = true
 

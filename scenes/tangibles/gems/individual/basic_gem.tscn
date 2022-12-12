@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxjq725ifw1qo"]
+
+[ext_resource type="PackedScene" uid="uid://dyyvfu186k5pd" path="res://scenes/tangibles/gems/gems_base.tscn" id="1_lo3wu"]
+[ext_resource type="Texture2D" uid="uid://b4iqo72rkb1yq" path="res://assets/images/tangibles/gems/gem_placeholder.png" id="2_boxmk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkrgm"]
+size = Vector2(116, 146)
+
+[node name="BasicGem" instance=ExtResource("1_lo3wu")]
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = -0.518873
+scale = Vector2(0.479263, 0.479263)
+texture = ExtResource("2_boxmk")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_qkrgm")

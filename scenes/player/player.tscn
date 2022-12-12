@@ -20,8 +20,9 @@ motion_mode = 1
 script = ExtResource("1_w1qbe")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-shadow_enabled = true
+energy = 0.5
 texture = ExtResource("2_ueykn")
+texture_scale = 2.14
 
 [node name="FalseLighting-background" type="Sprite2D" parent="."]
 position = Vector2(2, -10)

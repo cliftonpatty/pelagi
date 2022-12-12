@@ -10,3 +10,5 @@ script = ExtResource("1_ul3xl")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]

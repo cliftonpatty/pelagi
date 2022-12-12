@@ -5,7 +5,11 @@ extends Node2D
 
 ##Spawnable fish as an array, only 'basic' fish here
 ##with rare ones spawned elsewhere
-@export var spawnableFish: Array[PackedScene] = []
+@export var spawnableFish: Array[PackedScene] = [
+]
+
+@export_exp_easing var transition_speed
+
 @export var spawnableGems: Array[PackedScene] = []
 ##Spawn timing range (float, updates timer component)
 @export var spawnTimingRange: Vector2 = Vector2(0.1,0.9)
@@ -13,13 +17,19 @@ extends Node2D
 @onready var spawnBounds: CollisionShape2D = $Area2D/CollisionShape2D
 var random_num = RandomNumberGenerator.new()
 
+#This gets updated from the parent node of the current fishing 'world'
 var depth: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var fishTotalRarity: float = 0.0
+	for fish in spawnableFish:
+		fishTotalRarity += fish.instantiate().rarity
+	print(fishTotalRarity)
 	pass
 
 func _on_timer_timeout() -> void:
+	print(depth)
 	if Globals.ascending == false:
 		#Using all this excessive randoming to bypass the seed-based psuedo-random that GoDot uses
 		#Remove randomize and random_num to generate 'random' numbers that stay static past first launch

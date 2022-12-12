@@ -1,6 +1,7 @@
+CPUParticles2D
+LightOccluder2D
 PointLight2D
 Label
-CPUParticles2D
 Sprite2D
 Timer
 RayCast2D

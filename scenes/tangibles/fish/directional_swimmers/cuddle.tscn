@@ -8,6 +8,7 @@ size = Vector2(146, 52)
 
 [node name="DirectionalSwimmers" instance=ExtResource("1_kluht")]
 swimSpeed = 450
+rarity = 0.7
 
 [node name="MainSprite" parent="." index="0"]
 texture = ExtResource("2_jrgkp")
