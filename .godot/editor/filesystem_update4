@@ -1,2 +1,6 @@
 res://scenes/world/fishing/ocean.tscn
 res://scenes/world/fishing/world_generation/cave_walls.gd
+res://scenes/world/fishing/world_generation/fish_generator.gd
+res://scenes/tangibles/fish/wall_huggers/wall_hugger.tscn
+res://scenes/tangibles/fish/armored_swimmers.tscn
+res://scenes/tangibles/fish/wall_hugger.tscn

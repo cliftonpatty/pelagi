@@ -6,10 +6,8 @@ extends Node2D
 ##Spawnable fish as an array, only 'basic' fish here
 ##with rare ones spawned elsewhere
 @export var spawnableFish: Array[PackedScene] = []
-
-@export_exp_easing var transition_speed
-
 @export var spawnableGems: Array[PackedScene] = []
+
 ##Spawn timing range (float, updates timer component)
 @export var spawnTimingRange: Vector2 = Vector2(0.1,0.9)
 
@@ -49,23 +47,25 @@ func _on_timer_timeout() -> void:
 	$Timer.wait_time = random_num.randf_range(spawnTimingRange.x,spawnTimingRange.y)
 
 func spawn_a_gem(ray):
-	var gemDex = random_num.randi_range( 0, spawnableGems.size()-1 )
-	var nGem = spawnableGems[gemDex].instantiate()
-	get_parent().add_child(nGem)
-	
-	#A dog-brained way to manage gem spawn orientation 
-	if ray == rayRight:
-		nGem.set_orientation(-1)
-	else:
-		nGem.set_orientation(1)
+	if len(spawnableGems):
+		var gemDex = random_num.randi_range( 0, spawnableGems.size()-1 )
+		var nGem = spawnableGems[gemDex].instantiate()
+		get_parent().add_child(nGem)
 		
-	nGem.global_position = ray.get_collision_point()
+		#A dog-brained way to manage gem spawn orientation 
+		if ray == rayRight:
+			nGem.set_orientation(-1)
+		else:
+			nGem.set_orientation(1)
+			
+		nGem.global_position = ray.get_collision_point()
 
 func spawn_a_fish():
-	var fishDex = random_num.randi_range( 0, spawnableFish.size()-1 )
-	var nFish = spawnableFish[fishDex].instantiate()
-	#Give the X-axis spawn some variance
-	var xVar = random_num.randi_range( 50, spawnBounds.shape.get_rect().size.x )
-	self.get_parent().add_child(nFish)
-	nFish.global_position = Vector2(xVar, global_position.y)
-	
+	if len(spawnableFish):
+		var fishDex = random_num.randi_range( 0, spawnableFish.size()-1 )
+		var nFish = spawnableFish[fishDex].instantiate()
+		#Give the X-axis spawn some variance
+		var xVar = random_num.randi_range( 50, spawnBounds.shape.get_rect().size.x )
+		self.get_parent().add_child(nFish)
+		nFish.global_position = Vector2(xVar, global_position.y)
+		

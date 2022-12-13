@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqf0jrvecd3s"]
+
+[ext_resource type="PackedScene" uid="uid://bwxuo0b1uiojb" path="res://scenes/tangibles/fish/fish_base.tscn" id="1_mgd6l"]
+[ext_resource type="Script" path="res://scenes/tangibles/fish/wall_hugger.gd" id="2_kipvh"]
+[ext_resource type="Texture2D" uid="uid://b2sg7aps8j0nd" path="res://assets/images/tangibles/fish/sucker.png" id="3_h4qr4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ilrn"]
+size = Vector2(82, 92)
+
+[node name="WallHugger" instance=ExtResource("1_mgd6l")]
+script = ExtResource("2_kipvh")
+
+[node name="MainSprite" parent="." index="0"]
+texture = ExtResource("3_h4qr4")
+flip_h = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(3, -3)
+shape = SubResource("RectangleShape2D_4ilrn")
