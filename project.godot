@@ -32,7 +32,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Repos"
+config/name="Pelagi & Sons"
 run/main_scene="res://scenes/world/fishing/ocean.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"

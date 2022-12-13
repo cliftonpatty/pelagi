@@ -5,8 +5,7 @@ extends Node2D
 
 ##Spawnable fish as an array, only 'basic' fish here
 ##with rare ones spawned elsewhere
-@export var spawnableFish: Array[PackedScene] = [
-]
+@export var spawnableFish: Array[PackedScene] = []
 
 @export_exp_easing var transition_speed
 
