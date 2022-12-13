@@ -19,11 +19,6 @@ height = 184.0
 motion_mode = 1
 script = ExtResource("1_w1qbe")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.5
-texture = ExtResource("2_ueykn")
-texture_scale = 2.14
-
 [node name="FalseLighting-background" type="Sprite2D" parent="."]
 position = Vector2(2, -10)
 scale = Vector2(0.467227, 0.467227)
@@ -42,7 +37,6 @@ scale_amount_max = 0.2
 [node name="Body" type="Node2D" parent="."]
 
 [node name="ShipSprite" type="Sprite2D" parent="Body"]
-light_mask = 0
 texture_filter = 6
 position = Vector2(-0.0375786, 9.53674e-07)
 scale = Vector2(0.403841, 0.403972)
@@ -72,5 +66,12 @@ shape = SubResource("CapsuleShape2D_tkqo6")
 position = Vector2(1, -17)
 scale = Vector2(0.569201, 0.569201)
 texture = ExtResource("5_qh56r")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 1, 0.219608)
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("2_ueykn")
+texture_scale = 4.42
 
 [connection signal="area_entered" from="Body/FishDetection" to="." method="_on_fish_detection_area_entered"]

@@ -1,12 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://e7qbgr4cg6pn"]
-
-[ext_resource type="PackedScene" uid="uid://b6foh4q7d7jx6" path="res://scenes/tangibles/fish/directional_swimmers/directional_swimmers.tscn" id="1_t2pyy"]
-[ext_resource type="Texture2D" uid="uid://st8kxo8pqp0x" path="res://assets/images/tangibles/fish/armored_chub.png" id="2_3tvkm"]
-[ext_resource type="Texture2D" uid="uid://bgr6lfh5euhu4" path="res://assets/images/tangibles/fish/chub.png" id="3_8l88p"]
-[ext_resource type="Texture2D" uid="uid://bcu12dc8t4r3q" path="res://assets/images/effects/chub_armour_broken.png" id="4_wqv01"]
-
-[sub_resource type="GDScript" id="GDScript_dplk8"]
-script/source = "extends DirectionalSwimmer
+extends DirectionalSwimmer
 
 #-------------------------------------------------------------------------------
 #INHERITED, Non-exported variables
@@ -15,9 +7,12 @@ script/source = "extends DirectionalSwimmer
 #bloodSplat: AnimatedSprite2D = $AnimatedSprite2D
 #-------------------------------------------------------------------------------
 
-@export_category(\"Armored Fish\")
+@export_category("Armored Fish")
 @export var newSprite : CompressedTexture2D = null
 
+@export_category("Particle")
+@export var chunkImage : CompressedTexture2D = null
+@export var chunkImage_HFrames : int = 1
 #-------------------------------------------------------------------------------
 
 @onready var bodyShrapnel : CPUParticles2D = $CPUParticles2D
@@ -35,7 +30,9 @@ func children_ready() -> void:
 	#This runs the parent func then the childs
 	#I try to avoid because it is easily missed 
 	super()
-	
+	if chunkImage:
+		bodyShrapnel.set_texture(chunkImage)
+		bodyShrapnel.material.particles_anim_h_frames = chunkImage_HFrames
 	catchable = false
 	
 
@@ -75,7 +72,7 @@ func drilled_by_player():
 func kill_fish():
 	swimSpeed = 0
 	bloodSplat.visible = true
-	bloodSplat.play(\"default\")
+	bloodSplat.play("default")
 	bodySprite.visible = false
 	await bloodSplat.animation_finished
 	queue_free()
@@ -89,48 +86,3 @@ func get_caught() -> bool :
 		$CollisionShape2D.disabled = true
 		set_physics_process(false)
 		return true
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxd1h"]
-size = Vector2(155, 70)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h6jcn"]
-particles_animation = true
-particles_anim_h_frames = 3
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[node name="ArmouredSwimmers" instance=ExtResource("1_t2pyy")]
-script = SubResource("GDScript_dplk8")
-newSprite = ExtResource("3_8l88p")
-swimSpeed = 250
-rarity = 0.2
-
-[node name="MainSprite" parent="." index="0"]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_3tvkm")
-flip_h = true
-
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(1.5, 0)
-shape = SubResource("RectangleShape2D_wxd1h")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="3"]
-material = SubResource("CanvasItemMaterial_h6jcn")
-position = Vector2(-17, 0)
-emitting = false
-lifetime = 4.0
-one_shot = true
-explosiveness = 1.0
-texture = ExtResource("4_wqv01")
-emission_shape = 1
-emission_sphere_radius = 80.93
-direction = Vector2(0, -10)
-spread = 30.0
-initial_velocity_min = 300.0
-initial_velocity_max = 500.0
-angular_velocity_min = -131.47
-angular_velocity_max = 180.0
-scale_amount_min = 0.2
-scale_amount_max = 0.3
-anim_offset_max = 1.0

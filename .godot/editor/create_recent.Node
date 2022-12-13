@@ -1,5 +1,7 @@
-CPUParticles2D
 LightOccluder2D
+Polygon2D
+CanvasModulate
+CPUParticles2D
 PointLight2D
 Label
 Sprite2D
@@ -7,7 +9,6 @@ Timer
 RayCast2D
 CollisionShape2D
 Area2D
-Polygon2D
 Node2D
 VisibleOnScreenNotifier2D
 AnimatedSprite2D

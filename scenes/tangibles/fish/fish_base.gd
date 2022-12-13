@@ -8,10 +8,12 @@ class_name SingleFishBase
 @export var swimSpeed: int
 ##How much is the fish worth if drilled?
 @export var value: int
+##Depth tier, a parent of rarity, controlling at what depth we see this fish, starts at 1, has no set end
+@export var depthTier : int = 1
 ##Rarity of the fish, lower number = more rare (rarer?)
-@onready @export_range(0,1.0) var rarity = 1.0
+@export_range(0,1.0) var rarity : float = 1.0
 ##Is this a fish that only spawns once?
-@onready @export var solo: bool = false
+@export var solo: bool = false
 
 #Other Variables----------------------------------------------------------------
 @onready var caught : bool = false ## A safety variable for state swapping 

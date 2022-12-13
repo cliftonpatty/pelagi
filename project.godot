@@ -12,7 +12,7 @@ _global_script_classes=[{
 "base": "SingleFishBase",
 "class": &"DirectionalSwimmer",
 "language": &"GDScript",
-"path": "res://scenes/tangibles/fish/directional_swimmers/directional_swimmers.gd"
+"path": "res://scenes/tangibles/fish/directional_swimmers.gd"
 }, {
 "base": "Area2D",
 "class": &"SingleFishBase",

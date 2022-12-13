@@ -1,0 +1,4 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" uid="uid://bwxuo0b1uiojb" path="res://scenes/tangibles/fish/fish_base.tscn" id="1_5708l"]
+[ext_resource type="Script" path="res://scenes/tangibles/fish/directional_swimmers.gd" id="2_xn23a"]
