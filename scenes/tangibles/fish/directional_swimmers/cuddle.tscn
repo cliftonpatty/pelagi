@@ -1,12 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfm8h0n1nf7ab"]
+[gd_scene load_steps=3 format=3 uid="uid://dfm8h0n1nf7ab"]
 
-[ext_resource type="PackedScene" uid="uid://b6foh4q7d7jx6" path="res://scenes/tangibles/fish/directional_swimmers/directional_swimmers.tscn" id="1_kluht"]
 [ext_resource type="Texture2D" uid="uid://crew5vcigk8ih" path="res://assets/images/tangibles/fish/cuddle.png" id="2_jrgkp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtdjv"]
 size = Vector2(146, 52)
 
-[node name="DirectionalSwimmers" instance=ExtResource("1_kluht")]
+[node name="DirectionalSwimmers"]
 swimSpeed = 450
 rarity = 0.7
 

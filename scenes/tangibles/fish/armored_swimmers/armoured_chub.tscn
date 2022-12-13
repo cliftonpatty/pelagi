@@ -5,3 +5,7 @@
 
 [node name="ArmouredChub" instance=ExtResource("1_lyyee")]
 newSprite = ExtResource("2_xyb7e")
+
+[node name="CollisionShape2D" parent="." index="1"]
+texture_filter = 0
+scale = Vector2(1, 1)

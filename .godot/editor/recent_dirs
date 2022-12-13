@@ -1,8 +1,7 @@
+res://scenes/tangibles/fish
 res://scenes/tangibles/fish/armored_swimmers
 res://scenes/tangibles/fish/directional_swimmers
-res://scenes/tangibles/fish/static_fish
 res://script_templates
-res://scenes/tangibles/fish
 res://assets/textures
 res://scenes/world/fishing
 res://assets/shaders
