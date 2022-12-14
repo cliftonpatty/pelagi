@@ -33,7 +33,8 @@ func _ready() -> void:
 
 func generate_fish_pile(depthTier):
 	dTier = depthTier
-	#Wipe the pile.
+	#This runs at start, and also whenever a new 'depth teir' is reached
+	#At the time of writing this depth teir is every 100 'meters' - in world parent (Ocean)
 	for fish in spawnableFish:
 		var fishFound = false
 		for checkedFish in fishPile:
@@ -63,7 +64,7 @@ func _on_timer_timeout() -> void:
 	if Globals.ascending == false:
 		if len(spawnableGems):
 			#Spawn a number from -100 to 10, if it's positive, spawn a gem
-			var spawnGem = random_num.randi_range(-10,10)
+			var spawnGem = random_num.randi_range(-100,10)
 			if spawnGem > 0:
 				#A 'random' way to decide which side we spawn it, reusing the spawnGem
 				if spawnGem > 5:

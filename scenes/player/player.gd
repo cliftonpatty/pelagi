@@ -85,10 +85,10 @@ func _on_fish_detection_area_entered(tangible: Area2D) -> void:
 			if tangible.catchable:
 				tangible.caught = true
 				call_deferred("catch_a_fish", tangible)
-	if tangible.is_in_group('gems') and Globals.ascending:
+	if tangible.is_in_group('loot') and Globals.ascending:
 		if !tangible.caught:
+			print('gem hit')
 			tangible.caught = true
-			print('GEM TOUCHY')
 			call_deferred("catch_a_fish", tangible)
 			
 func catch_a_fish(tangible):

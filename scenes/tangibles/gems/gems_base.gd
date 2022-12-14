@@ -27,6 +27,7 @@ func spawn_loot():
 		newChunk.global_position = global_position
 		var tweenMove = create_tween().set_parallel(true).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 		var tweenDur = random_num.randi_range(1,2)
+		newChunk.myTween = tweenMove
 		tweenMove.tween_property( 
 			newChunk, 
 			"global_position", 

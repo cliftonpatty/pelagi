@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scenes/world/fishing/world_generation/cave_walls.gd" id="1_3ql0a"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jluhe"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3hpu"]
 size = Vector2(20, 32.944)
 
 [node name="cave_walls" type="StaticBody2D" groups=["walls"]]
 script = ExtResource("1_3ql0a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_jluhe")
+shape = SubResource("RectangleShape2D_m3hpu")

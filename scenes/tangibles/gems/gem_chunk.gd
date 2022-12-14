@@ -1,15 +1,23 @@
-extends Sprite2D
+extends Area2D
 
-@onready var caught : bool = true
+@onready var caught : bool = false
+
+#Tween reference, so we can kill it if needed
+var myTween: Tween
+
 
 func get_caught() -> bool :
-	$Area2D.monitorable = false
-	$Area2D.monitoring = false
+	
+	#Kill our tween if it exists, this just makes sure Global Position 
+	#doesn't get fucked up by two competeting interests 
+	if myTween:
+		myTween.kill()
+	
+	#Disable all collision detection and per-tick processing 
+	monitorable = false
+	monitoring = false
 	$CollisionShape2D.disabled = true
 	set_physics_process(false)
 	
+	#Tell our catcher that the catch was successful 
 	return true
-
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	print('entered')
