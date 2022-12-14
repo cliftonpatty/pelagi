@@ -4,7 +4,8 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Body/ShipSprite
 @onready var hookSprite: Sprite2D = $Body/Hook
 @onready var body = $Body
-
+#SHITTY TEMP DARKNESS SIMLUATION
+@onready var pinhole: Sprite2D = $Pinhole
 #Actions and States-------------------------------------------------------------
 
 @onready var drillActive: bool = false
@@ -13,6 +14,8 @@ signal caught_a_fish(fish)
 
 const SPEED: float = 600.0
 
+var depth = 0
+
 func _physics_process(delta: float) -> void:
 	position.y += Globals.dropSpeed * delta
 	
@@ -20,7 +23,11 @@ func _physics_process(delta: float) -> void:
 	ALERT
 	IF PLAYER IS NOT UNDERWATER - POSITION IS CONTROLLED BY 'OCEAN' SCENE
 	""" 
-	
+	if depth <= 255:
+		pinhole.modulate.a8 = depth
+	else:
+		pinhole.modulate.a8 = 255
+		
 	if Globals.underwater:
 	
 		# Get the input direction and handle the movement/deceleration.
@@ -68,20 +75,24 @@ func _on_fish_detection_area_entered(tangible: Area2D) -> void:
 	if drillActive and !Globals.ascending:
 		if tangible.is_in_group('drillable'):
 			tangible.drilled_by_player()
-	if tangible.is_in_group('fish'):
-		if drillActive == false:
-			if !tangible.caught:
-				if Globals.ascending == false:
-					Globals.trigger_ascent()
-					$Bubbles.visible = false
-					sprite.frame = 2
-					hookSprite.visible = true
-				if tangible.catchable:
-					tangible.caught = true
-					call_deferred("catch_a_fish", tangible)
-
-func catch_a_fish(fish):
-		var fishCaught = fish.get_caught()
-		if fishCaught:
-			emit_signal("caught_a_fish", fish)
+	if tangible.is_in_group('fish') and drillActive == false:
+		if !tangible.caught:
+			if Globals.ascending == false:
+				Globals.trigger_ascent()
+				$Bubbles.visible = false
+				sprite.frame = 2
+				hookSprite.visible = true
+			if tangible.catchable:
+				tangible.caught = true
+				call_deferred("catch_a_fish", tangible)
+	if tangible.is_in_group('gems') and Globals.ascending:
+		if !tangible.caught:
+			tangible.caught = true
+			print('GEM TOUCHY')
+			call_deferred("catch_a_fish", tangible)
+			
+func catch_a_fish(tangible):
+		var tangibleCaught = tangible.get_caught()
+		if tangibleCaught:
+			emit_signal("caught_a_fish", tangible)
 

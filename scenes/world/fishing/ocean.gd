@@ -19,6 +19,7 @@ func _physics_process(delta: float) -> void:
 		fishGenerator.depth = depth
 		var oldDepth = depth/depthTierUpdateInc + 1
 		depth = int( (player.global_position.distance_to($DepthAndSurface.global_position ) / 100 )) 
+		player.depth = depth
 		var newDepth = depth/depthTierUpdateInc + 1
 		
 		if oldDepth != newDepth:
