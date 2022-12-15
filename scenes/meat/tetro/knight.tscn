@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkt0btbnab3bs"]
+
+[ext_resource type="PackedScene" uid="uid://ck3uce8y4y681" path="res://scenes/meat/tetro_base.tscn" id="1_el0s4"]
+
+[node name="Knight" instance=ExtResource("1_el0s4")]
+gridCoverage = 4
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(-48, -104, -48, -48, -48, 72, 0, 72, 0, -56, 64, -56, 64, -104)

@@ -1,13 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgdm3n6354x2o"]
+[gd_scene load_steps=6 format=3 uid="uid://cgdm3n6354x2o"]
 
 [ext_resource type="PackedScene" uid="uid://uvtvgciwio5a" path="res://scenes/world/sorting/grid_parent.tscn" id="1_l16m7"]
 [ext_resource type="Script" path="res://scenes/world/sorting/sorting.gd" id="1_wrswx"]
-[ext_resource type="PackedScene" uid="uid://bw2731umwghce" path="res://scenes/world/sorting/tetro_base.tscn" id="2_gb7cs"]
+[ext_resource type="PackedScene" uid="uid://bnrjh1t3u0cvc" path="res://scenes/meat/tetro/button_square.tscn" id="3_tfdtw"]
+[ext_resource type="PackedScene" uid="uid://cdw7a7i8b2ps6" path="res://scenes/meat/tetro/diag_two.tscn" id="4_jwum6"]
+[ext_resource type="PackedScene" uid="uid://bkt0btbnab3bs" path="res://scenes/meat/tetro/knight.tscn" id="5_ya520"]
 
 [node name="Sorting" type="Node2D"]
 script = ExtResource("1_wrswx")
 
 [node name="GridParent" parent="." instance=ExtResource("1_l16m7")]
-position = Vector2(352, 224)
+position = Vector2(384, 256)
 
-[node name="Area2D" parent="." instance=ExtResource("2_gb7cs")]
+[node name="Tetro" type="Node2D" parent="."]
+
+[node name="ButtonSquare" parent="Tetro" instance=ExtResource("3_tfdtw")]
+
+[node name="DiagTwo" parent="Tetro" instance=ExtResource("4_jwum6")]
+position = Vector2(496, 368)
+
+[node name="Knight" parent="Tetro" instance=ExtResource("5_ya520")]
+position = Vector2(296, 496)
+
+[node name="ButtonSquare2" parent="Tetro" instance=ExtResource("3_tfdtw")]
+position = Vector2(912, 488)
+
+[node name="DiagTwo2" parent="Tetro" instance=ExtResource("4_jwum6")]
+position = Vector2(848, 392)
+
+[node name="Knight2" parent="Tetro" instance=ExtResource("5_ya520")]
+position = Vector2(664, 504)

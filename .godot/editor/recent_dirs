@@ -1,3 +1,5 @@
+res://scenes/meat/tetro
+res://assets/shaders
 res://scripts/globals
 res://scenes/world/sorting
 res://scenes/tangibles/gems
@@ -8,7 +10,6 @@ res://scenes/tangibles/fish
 res://script_templates
 res://assets/textures
 res://scenes/world/fishing
-res://assets/shaders
 res://scripts/houses
 res://assets/images/effects
 res://

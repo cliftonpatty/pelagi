@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnrjh1t3u0cvc"]
+
+[ext_resource type="PackedScene" uid="uid://ck3uce8y4y681" path="res://scenes/meat/tetro_base.tscn" id="1_t5yr3"]
+[ext_resource type="Texture2D" uid="uid://cy33cdktirnct" path="res://assets/images/meat/tetro/button.png" id="2_tfsjh"]
+
+[node name="ButtonSquare" instance=ExtResource("1_t5yr3")]
+gridCoverage = 1
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, 0)
+texture = ExtResource("2_tfsjh")
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(-48, 72, 0, 72, 0, 24, -48, 24)
