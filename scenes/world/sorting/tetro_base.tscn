@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw2731umwghce"]
+
+[ext_resource type="Script" path="res://scenes/world/sorting/tetro_base.gd" id="1_ax6gp"]
+[ext_resource type="Texture2D" uid="uid://dpt8lbv61phjh" path="res://assets/images/meat/tetro/bone_l.png" id="2_nxo1x"]
+
+[node name="TetroBase" type="Area2D"]
+position = Vector2(544, 480)
+script = ExtResource("1_ax6gp")
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(24, -48)
+polygon = PackedVector2Array(-56, -112, -56, -80.4973, -56, 80, 8, 80, 8, -48, 72, -48, 72, -112)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 6
+position = Vector2(32, -64)
+scale = Vector2(0.334204, 0.324873)
+texture = ExtResource("2_nxo1x")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

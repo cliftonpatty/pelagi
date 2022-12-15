@@ -1,3 +1,5 @@
+res://scripts/globals
+res://scenes/world/sorting
 res://scenes/tangibles/gems
 res://scenes/tangibles/fish/directional_swimmer
 res://scenes/tangibles/fish/armoured_swimmers
@@ -9,6 +11,5 @@ res://scenes/world/fishing
 res://assets/shaders
 res://scripts/houses
 res://assets/images/effects
-res://scripts/globals
 res://
 res://scenes/player

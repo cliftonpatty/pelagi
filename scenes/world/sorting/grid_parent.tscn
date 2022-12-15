@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://uvtvgciwio5a"]
+
+[ext_resource type="Script" path="res://scenes/world/sorting/grid_parent.gd" id="1_hnb2t"]
+
+[node name="GridParent" type="Node2D"]
+position = Vector2(88, 48)
+script = ExtResource("1_hnb2t")
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
