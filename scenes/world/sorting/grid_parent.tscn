@@ -11,14 +11,18 @@ metadata/_edit_group_ = true
 polygon = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 modulate = Color(0, 0, 0, 1)
 z_index = 99
 texture_filter = 4
-offset_left = -120.0
-offset_top = -64.0
-offset_right = -48.0
-offset_bottom = -40.0
+offset_left = -960.0
+offset_top = -288.0
+offset_right = -888.0
+offset_bottom = -264.0
 theme_override_font_sizes/normal_font_size = 13
 text = "text"
 scroll_active = false
 shortcut_keys_enabled = false
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(448, 0)

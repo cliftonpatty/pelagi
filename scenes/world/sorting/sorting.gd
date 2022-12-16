@@ -1,10 +1,24 @@
 extends Node2D
 
-# Called when the node enters the scene tree for the first time.
+@onready var gridRef : Node2D = $GridParent
+
+var lastPickup 
+
+
 func _ready() -> void:
-	pass # Replace with function body.
+	for tetro in $Tetro.get_children():
+		tetro.emit_position.connect(tetro_pos_handoff)
+		tetro.discard_position.connect(tetro_pos_removal)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func tetro_pos_handoff(pos, obj):
+	gridRef.recieve_tetro_pos(pos, obj)
+
+
+func tetro_pos_removal(pos, obj):
+	gridRef.remove_tetro_pos(pos, obj)
+	
