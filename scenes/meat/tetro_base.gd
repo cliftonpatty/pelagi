@@ -54,7 +54,6 @@ func _on_mouse_exited() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	$TextEdit.text = str(dropping)
 	if event.is_action_pressed("MouseLeft"):
 		if mouseOver:
 			held = true

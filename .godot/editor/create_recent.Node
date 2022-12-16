@@ -1,5 +1,6 @@
-TextEdit
 Node2D
+RichTextLabel
+TextEdit
 Polygon2D
 CollisionShape2D
 CollisionPolygon2D
@@ -16,7 +17,6 @@ VisibleOnScreenNotifier2D
 AnimatedSprite2D
 PinJoint2D
 StaticBody2D
-RichTextLabel
 Control
 Camera2D
 CharacterBody2D

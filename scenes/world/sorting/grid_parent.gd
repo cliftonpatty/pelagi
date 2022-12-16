@@ -12,6 +12,12 @@ func _ready() -> void:
 	for x in gridDimensions.x:
 		for y in gridDimensions.y:
 			var block = new_grid_block()
+			var newText = $RichTextLabel.duplicate()
+			
+			newText.global_position = Vector2(xPos - 15,y*gridSize - 15)
+			newText.text = str( '(', x, ',', y, ')' )
+			add_child(newText)
+			
 			block.global_position = Vector2(xPos,y*gridSize)
 		xPos+=gridSize
 

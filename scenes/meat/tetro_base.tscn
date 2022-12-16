@@ -23,13 +23,7 @@ texture = ExtResource("3_1r7m4")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(24, -48)
-polygon = PackedVector2Array(-40, -96, -40, -48, -40, 64, -8, 64, -8, -56, 56, -56, 56, -96)
-
-[node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 40.0
-offset_top = -80.0
-offset_right = 152.0
-offset_bottom = -40.0
+polygon = PackedVector2Array(-56, -112, -56, -48, -56, 80, 8, 80, 8, -48, 72, -48, 72, -112)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
