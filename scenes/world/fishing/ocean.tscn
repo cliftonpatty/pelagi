@@ -1,15 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://ouejmgjh232p"]
+[gd_scene load_steps=17 format=3 uid="uid://cb41lb67lxia6"]
 
-[ext_resource type="PackedScene" uid="uid://dv6q0wn7wrkvg" path="res://scenes/player/player.tscn" id="1_2kdgh"]
+[ext_resource type="PackedScene" uid="uid://cdxrwy1hw6buq" path="res://scenes/player/player.tscn" id="1_2kdgh"]
 [ext_resource type="Script" path="res://scenes/world/fishing/ocean.gd" id="1_3dxfq"]
 [ext_resource type="Script" path="res://scripts/houses/player_house.gd" id="2_afyav"]
 [ext_resource type="PackedScene" uid="uid://bw5w7wh8swj1v" path="res://scenes/world/fishing/world_generation/world_generator.tscn" id="3_65yjv"]
 [ext_resource type="Texture2D" uid="uid://1ajkkdvwgxe1" path="res://assets/textures/cross-hatch.jpg" id="4_8s3h2"]
 [ext_resource type="PackedScene" uid="uid://cj7enlu4qarvo" path="res://scenes/player/fish_line.tscn" id="4_a0x25"]
 [ext_resource type="PackedScene" uid="uid://bnknqobfg85k6" path="res://scenes/world/fishing/world_generation/fish_generator.tscn" id="5_cin7k"]
-[ext_resource type="PackedScene" uid="uid://cqf0jrvecd3s" path="res://scenes/tangibles/fish/wall_hugger.tscn" id="9_8m61w"]
+[ext_resource type="PackedScene" uid="uid://uxbx8kwlr0mn" path="res://scenes/tangibles/fish/armoured_swimmers/armoured_chub.tscn" id="9_5vg2q"]
+[ext_resource type="PackedScene" uid="uid://bp2bbyd4dagtk" path="res://scenes/tangibles/fish/directional_swimmer/cuddle.tscn" id="10_a2hwn"]
+[ext_resource type="PackedScene" uid="uid://cvidq7inff26k" path="res://scenes/tangibles/fish/directional_swimmer/pig.tscn" id="11_1s2j1"]
 [ext_resource type="Texture2D" uid="uid://bu23uv53dnt8o" path="res://assets/textures/background-water_generic.jpg" id="11_qe73a"]
 [ext_resource type="PackedScene" uid="uid://betcukpb07lly" path="res://scenes/world/fishing/claw.tscn" id="12_80ql6"]
+[ext_resource type="PackedScene" uid="uid://bu30jaj4ksgqt" path="res://scenes/tangibles/fish/directional_swimmer/spear.tscn" id="12_fs5y5"]
+[ext_resource type="PackedScene" uid="uid://cxjq725ifw1qo" path="res://scenes/tangibles/gems/individual/basic_gem.tscn" id="13_05c8i"]
 [ext_resource type="Texture2D" uid="uid://c6xhty61kb3qh" path="res://assets/images/world/backgrounds/sunset.jpg" id="13_kon01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0m0ap"]
@@ -44,6 +48,7 @@ position = Vector2(1, 91)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 top_level = true
+light_mask = 0
 position = Vector2(960, 57)
 current = true
 drag_left_margin = 0.8
@@ -75,7 +80,8 @@ position = Vector2(-295, 0)
 
 [node name="FishGenerator" parent="." instance=ExtResource("5_cin7k")]
 position = Vector2(924, 622)
-spawnableGems = [ExtResource("9_8m61w")]
+spawnableFish = [ExtResource("9_5vg2q"), ExtResource("10_a2hwn"), ExtResource("11_1s2j1"), ExtResource("12_fs5y5")]
+spawnableGems = [ExtResource("13_05c8i")]
 spawnTimingRange = Vector2(0.1, 0.2)
 metadata/_edit_group_ = true
 

@@ -1,50 +1,82 @@
 extends Node2D
 
+#Onreadys ----------------------------------------------------------------------
 @onready var rayLeft: RayCast2D = $RayPointingLeft
 @onready var rayRight: RayCast2D = $RayPointingRight
+@onready var spawnBounds: CollisionShape2D = $Area2D/CollisionShape2D
 
+#Exported Variables-------------------------------------------------------------
 ##Spawnable fish as an array, only 'basic' fish here
-##with rare ones spawned elsewhere
-@export var spawnableFish: Array[PackedScene] = []
-@export var spawnableGems: Array[PackedScene] = []
-
+##with rare ones spawned elsewhere (.tscn files only)
+@export var spawnableFish: Array[PackedScene]
+##Spawnable gems as an array, only 'basic' gems here
+##with rare ones spawned elsewhere (.tscn files only)
+@export var spawnableGems: Array[PackedScene]
 ##Spawn timing range (float, updates timer component)
 @export var spawnTimingRange: Vector2 = Vector2(0.1,0.9)
 
-@onready var spawnBounds: CollisionShape2D = $Area2D/CollisionShape2D
+#Spawn Variables----------------------------------------------------------------
 var random_num = RandomNumberGenerator.new()
+var depth: int #Updated from the parent node of the current fishing 'world'
+var dTier: int = 1 #Local depth tier reference 
+var fishTotalRarity: float = 0.0
+#Our fish (from spawnable fish) as a sorted array of objects (dictionaries), 
+#which is done in ready
+var fishPile = []
 
-#This gets updated from the parent node of the current fishing 'world'
-var depth: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var fishTotalRarity: float = 0.0
+	Globals.depth_tier_updated.connect(generate_fish_pile)
+	if len(spawnableFish):
+		generate_fish_pile(dTier)
+
+func generate_fish_pile(depthTier):
+	dTier = depthTier
+	#This runs at start, and also whenever a new 'depth teir' is reached
+	#At the time of writing this depth teir is every 100 'meters' - in world parent (Ocean)
 	for fish in spawnableFish:
-		fishTotalRarity += fish.instantiate().rarity
-	print(fishTotalRarity)
-	pass
+		var fishFound = false
+		for checkedFish in fishPile:
+			if checkedFish.scene == fish:
+				fishFound = true
+		if !fishFound:
+			var fishToAdd = fish.instantiate()
+			if fishToAdd.depthTier <= dTier:
+				#Make a dictionary of this, since we want to instance our packed scenes instead of 
+				#duplicating the instances -- 
+				#But we need the instance initially to read its 'contents' 
+				fishPile.append(
+						{
+							'instance' : fishToAdd,
+							'scene' : fish
+						}
+					)
+				fishTotalRarity += fishToAdd.rarity 
+			
+	fishPile.sort_custom( func(a,b): return a.instance.rarity > b.instance.rarity )
+	
+	print( fishPile )
+
 
 func _on_timer_timeout() -> void:
-	print(depth)
+	
 	if Globals.ascending == false:
-		#Using all this excessive randoming to bypass the seed-based psuedo-random that GoDot uses
-		#Remove randomize and random_num to generate 'random' numbers that stay static past first launch
-		random_num.randomize()
-		
-		#Spawn a number from -10 to 1, if it's positive, spawn a gem
-		var spawnGem = random_num.randi_range(-100,10)
-		
-		if spawnGem > 0:
-			#A 'random' way to decide which side we spawn it, reusing the spawnGem
-			if spawnGem > 5:
-				spawn_a_gem(rayLeft)
-			else:
-				spawn_a_gem(rayRight)
-				
-		spawn_a_fish()
+		if len(spawnableGems):
+			#Spawn a number from -100 to 10, if it's positive, spawn a gem
+			var spawnGem = random_num.randi_range(-100,10)
+			if spawnGem > 0:
+				#A 'random' way to decide which side we spawn it, reusing the spawnGem
+				if spawnGem > 5:
+					spawn_a_gem(rayLeft)
+				else:
+					spawn_a_gem(rayRight)
+					
+		if len(fishPile):
+			spawn_a_fish()
 		
 	$Timer.wait_time = random_num.randf_range(spawnTimingRange.x,spawnTimingRange.y)
+
 
 func spawn_a_gem(ray):
 	if len(spawnableGems):
@@ -60,12 +92,22 @@ func spawn_a_gem(ray):
 			
 		nGem.global_position = ray.get_collision_point()
 
+
 func spawn_a_fish():
-	if len(spawnableFish):
-		var fishDex = random_num.randi_range( 0, spawnableFish.size()-1 )
-		var nFish = spawnableFish[fishDex].instantiate()
+	if len(fishPile):
+		var newFish : Area2D = get_random_fish().instantiate()
 		#Give the X-axis spawn some variance
 		var xVar = random_num.randi_range( 50, spawnBounds.shape.get_rect().size.x )
-		self.get_parent().add_child(nFish)
-		nFish.global_position = Vector2(xVar, global_position.y)
-		
+		self.get_parent().add_child(newFish)
+		newFish.global_position = Vector2(xVar, global_position.y)
+
+
+func get_random_fish():
+	if len(fishPile):
+		var curTotal = 0
+		var roll = randf_range(0,fishTotalRarity)
+		for fish in fishPile:
+			if roll < fish.instance.rarity:
+				return fish.scene
+			roll -= fish.instance.rarity
+

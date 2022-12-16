@@ -10,6 +10,7 @@ func _ready() -> void:
 func fish_transfer(fish):
 	#Wipe fish parentage so we can repatriate
 	if fish.get_parent() != null:
+		print(fish)
 		#print('we gone kill her mom :( ', fish.get_parent())
 		var fishParent = fish.get_parent()
 		fishParent.remove_child(fish)

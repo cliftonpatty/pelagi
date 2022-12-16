@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6tm4h683v24x"]
+
+[ext_resource type="Texture2D" uid="uid://c5sv0xd02bjqt" path="res://assets/images/effects/gem_chunk.png" id="1_vbapp"]
+[ext_resource type="Script" path="res://scenes/tangibles/gems/gem_chunk.gd" id="2_8askp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_47qeo"]
+radius = 88.0
+
+[node name="GemChunk" type="Area2D" groups=["loot"]]
+modulate = Color(0.843137, 0.839216, 0.541176, 1)
+position = Vector2(-0.454544, 0)
+scale = Vector2(0.530792, 0.545455)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_8askp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_47qeo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vbapp")

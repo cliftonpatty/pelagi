@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://uxbx8kwlr0mn"]
+
+[ext_resource type="PackedScene" uid="uid://b4m2314rlsfrc" path="res://scenes/tangibles/fish/armoured_swimmers.tscn" id="1_ye5v6"]
+[ext_resource type="Texture2D" uid="uid://st8kxo8pqp0x" path="res://assets/images/tangibles/fish/armored_chub.png" id="2_hthpy"]
+[ext_resource type="Texture2D" uid="uid://bgr6lfh5euhu4" path="res://assets/images/tangibles/fish/chub.png" id="2_of8rj"]
+[ext_resource type="Texture2D" uid="uid://bcu12dc8t4r3q" path="res://assets/images/effects/chub_armour_broken.png" id="3_ng3ft"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhlxb"]
+size = Vector2(174, 50)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fbhi2"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="ArmouredChub" instance=ExtResource("1_ye5v6")]
+newSprite = ExtResource("2_of8rj")
+chunkImage = ExtResource("3_ng3ft")
+chunkImage_HFrames = 3
+swimSpeed = 250
+depthTier = 3
+rarity = 0.3
+
+[node name="MainSprite" parent="." index="0"]
+scale = Vector2(0.392371, 0.392371)
+texture = ExtResource("2_hthpy")
+flip_h = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_rhlxb")
+
+[node name="CPUParticles2D" parent="." index="3"]
+material = SubResource("CanvasItemMaterial_fbhi2")

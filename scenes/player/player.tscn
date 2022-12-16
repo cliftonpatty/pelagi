@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv6q0wn7wrkvg"]
+[gd_scene load_steps=10 format=3 uid="uid://cdxrwy1hw6buq"]
 
 [ext_resource type="Texture2D" uid="uid://tovmti8pu18e" path="res://assets/images/player/base_ship.png" id="1_7pgf2"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_w1qbe"]
 [ext_resource type="Texture2D" uid="uid://b7kvb3b5asp1c" path="res://assets/images/player/false_lighting-background.png" id="2_5ebji"]
 [ext_resource type="Texture2D" uid="uid://b101g41ck2g48" path="res://assets/images/effects/Bubble.png" id="2_jowck"]
-[ext_resource type="Texture2D" uid="uid://c4q1ofyfs34wr" path="res://assets/images/tangibles/fish/Asset 10.png" id="2_ueykn"]
 [ext_resource type="Texture2D" uid="uid://bcvvb7onaaw13" path="res://assets/images/player/base_ship-hook.png" id="3_lsajb"]
 [ext_resource type="Texture2D" uid="uid://bwjvuu24ddwki" path="res://assets/images/player/false_lighting.png" id="5_qh56r"]
+[ext_resource type="Texture2D" uid="uid://1i8aumh0gnbs" path="res://assets/images/effects/pinhole.png" id="7_k73lp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wswkd"]
 radius = 47.1699
@@ -19,12 +19,7 @@ height = 184.0
 motion_mode = 1
 script = ExtResource("1_w1qbe")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.5
-texture = ExtResource("2_ueykn")
-texture_scale = 2.14
-
-[node name="FalseLighting-background" type="Sprite2D" parent="."]
+[node name="FalseLighting-background2" type="Sprite2D" parent="."]
 position = Vector2(2, -10)
 scale = Vector2(0.467227, 0.467227)
 texture = ExtResource("2_5ebji")
@@ -42,7 +37,6 @@ scale_amount_max = 0.2
 [node name="Body" type="Node2D" parent="."]
 
 [node name="ShipSprite" type="Sprite2D" parent="Body"]
-light_mask = 0
 texture_filter = 6
 position = Vector2(-0.0375786, 9.53674e-07)
 scale = Vector2(0.403841, 0.403972)
@@ -72,5 +66,12 @@ shape = SubResource("CapsuleShape2D_tkqo6")
 position = Vector2(1, -17)
 scale = Vector2(0.569201, 0.569201)
 texture = ExtResource("5_qh56r")
+
+[node name="Pinhole" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0)
+z_index = 10
+position = Vector2(2, -10)
+scale = Vector2(0.965567, 0.965567)
+texture = ExtResource("7_k73lp")
 
 [connection signal="area_entered" from="Body/FishDetection" to="." method="_on_fish_detection_area_entered"]

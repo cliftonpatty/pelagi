@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdw7a7i8b2ps6"]
+
+[ext_resource type="PackedScene" uid="uid://ck3uce8y4y681" path="res://scenes/meat/tetro_base.tscn" id="1_m182n"]
+[ext_resource type="Texture2D" uid="uid://csks5h8kigptp" path="res://assets/images/meat/tetro/half_.png" id="2_tn52q"]
+
+[node name="DiagTwo" instance=ExtResource("1_m182n")]
+gridCoverage = 2
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(30.3185, -29.7868)
+scale = Vector2(0.326747, 0.355985)
+texture = ExtResource("2_tn52q")
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(8, 16, -56, 16, -56, 80, 8, 80, 8, 24, 72, 16, 72, -48, 8, -48)

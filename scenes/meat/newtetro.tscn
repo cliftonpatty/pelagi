@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://bt0d1sh5dr6v1"]
+
+[ext_resource type="Script" path="res://scenes/meat/newtetro.gd" id="1_7fue7"]
+[ext_resource type="Shader" path="res://assets/shaders/dropshadow.gdshader" id="2_lfnw8"]
+[ext_resource type="Texture2D" uid="uid://dpt8lbv61phjh" path="res://assets/images/meat/tetro/bone_l.png" id="3_arpg5"]
+[ext_resource type="Texture2D" uid="uid://du3trqwgo2jyw" path="res://assets/images/world/icebox/temp_flag.png" id="4_dg7nx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cl6iq"]
+shader = ExtResource("2_lfnw8")
+shader_parameter/modulate = null
+shader_parameter/radius = -8.185
+
+[node name="TetroBase" type="Area2D" groups=["tetro"]]
+position = Vector2(544, 480)
+script = ExtResource("1_7fue7")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 6
+material = SubResource("ShaderMaterial_cl6iq")
+position = Vector2(16, -64)
+scale = Vector2(0.334204, 0.324873)
+texture = ExtResource("3_arpg5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(24, -48)
+polygon = PackedVector2Array(-56, -112, -56, -48, -56, 80, 8, 80, 8, -48, 72, -48, 72, -112)
+
+[node name="Locations" type="Node2D" parent="."]
+visible = false
+
+[node name="Loc" type="Node2D" parent="Locations"]
+position = Vector2(0, -64)
+
+[node name="Label2" type="Label" parent="Locations/Loc"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 10.0
+text = "(1,0)"
+horizontal_alignment = 1
+
+[node name="Loc4" type="Node2D" parent="Locations"]
+
+[node name="Label" type="Label" parent="Locations/Loc4"]
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 18.0
+text = "(1,0)"
+horizontal_alignment = 1
+
+[node name="Loc2" type="Node2D" parent="Locations"]
+position = Vector2(0, -128)
+
+[node name="Label3" type="Label" parent="Locations/Loc2"]
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 18.0
+text = "(1,0)"
+horizontal_alignment = 1
+
+[node name="Loc3" type="Node2D" parent="Locations"]
+position = Vector2(64, -128)
+
+[node name="Label4" type="Label" parent="Locations/Loc3"]
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 18.0
+text = "(1,0)"
+horizontal_alignment = 1
+
+[node name="TempFlag" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -112)
+rotation = -0.245022
+texture = ExtResource("4_dg7nx")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

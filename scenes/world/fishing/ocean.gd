@@ -6,15 +6,25 @@ extends Node2D
 @onready var fishGenerator = $FishGenerator
 @onready var claw = $Claw
 
+@export var depthTierUpdateInc: int = 20
+
 var depth: int
+
+
 
 func _physics_process(delta: float) -> void:
 	fishGenerator.position.y += Globals.dropSpeed * delta
 	if Globals.underwater:
 		
 		fishGenerator.depth = depth
-		
+		var oldDepth = depth/depthTierUpdateInc + 1
 		depth = int( (player.global_position.distance_to($DepthAndSurface.global_position ) / 100 )) 
+		player.depth = depth
+		var newDepth = depth/depthTierUpdateInc + 1
+		
+		if oldDepth != newDepth:
+			Globals.emit_signal("depth_tier_updated", depth/depthTierUpdateInc + 1)
+		
 		UI.text = str(depth)
 		
 		if Globals.ascending:
