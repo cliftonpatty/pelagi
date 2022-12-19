@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Tetro",
+"class": &"Deco",
+"language": &"GDScript",
+"path": "res://scenes/meat/base_deco.gd"
+}, {
 "base": "SingleFishBase",
 "class": &"DirectionalSwimmer",
 "language": &"GDScript",
@@ -23,11 +28,18 @@ _global_script_classes=[{
 "class": &"SingleFishBase",
 "language": &"GDScript",
 "path": "res://scenes/tangibles/fish/fish_base.gd"
+}, {
+"base": "Area2D",
+"class": &"Tetro",
+"language": &"GDScript",
+"path": "res://scenes/meat/base_tetro.gd"
 }]
 _global_script_class_icons={
+"Deco": "",
 "DirectionalSwimmer": "",
 "GemBase": "",
-"SingleFishBase": ""
+"SingleFishBase": "",
+"Tetro": ""
 }
 
 [application]

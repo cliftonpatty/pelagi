@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://c31afg7rd5r56"]
+
+[ext_resource type="PackedScene" uid="uid://dsesdly7bd67f" path="res://scenes/meat/base_tetro.tscn" id="1_x6vpy"]
+[ext_resource type="Texture2D" uid="uid://csks5h8kigptp" path="res://assets/images/meat/tetro/half_.png" id="2_20tjb"]
+
+[node name="SmallDiag" instance=ExtResource("1_x6vpy")]
+position = Vector2(0, 0)
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(32, -32)
+scale = Vector2(0.351138, 0.369426)
+texture = ExtResource("2_20tjb")
+
+[node name="Loc" parent="Locations" index="0"]
+position = Vector2(0, 0)
+
+[node name="Loc2" type="Node2D" parent="Locations" index="1"]
+position = Vector2(64, -64)
+
+[node name="Label2" type="Label" parent="Locations/Loc2" index="0"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 10.0
+text = "(1,0)"
+horizontal_alignment = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
+position = Vector2(32, -32)
+scale = Vector2(0.351138, 0.369426)
+polygon = PackedVector2Array(174.5, -143.7, 182.265, 0, 41.1, 9.89999, 11.3, 28.7, 5, 155, -14.6, 173, -166.5, 173, -183.5, 148, -183.5, 122, -188, 24, -164.3, -6, -22.2, -17.5, 3.39999, -63.4, 9.7, -168, 118.8, -184.3)

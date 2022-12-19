@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7h6ejlf30pyj"]
+
+[ext_resource type="PackedScene" uid="uid://dsesdly7bd67f" path="res://scenes/meat/base_tetro.tscn" id="1_y5ved"]
+[ext_resource type="Script" path="res://scenes/meat/base_deco.gd" id="2_g6ynj"]
+[ext_resource type="Texture2D" uid="uid://baf0n0be7uc73" path="res://assets/images/meat/tetro/deco_crystal.png" id="2_j8546"]
+
+[node name="BaseDeco" instance=ExtResource("1_y5ved")]
+position = Vector2(0, 0)
+script = ExtResource("2_g6ynj")
+decoRange = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
+position = Vector2(3.8147e-06, 0)
+scale = Vector2(0.334204, 0.324873)
+polygon = PackedVector2Array(-95.7499, -98.5, -95.7499, -73.875, -113.703, -40.0156, -113.703, -12.3125, -128.664, -6.15625, -134.648, 36.9375, -74.8046, 33.8594, -140.633, 101.578, -119.687, 129.281, -32.914, 61.5625, -41.8906, 110.813, 11.9687, 104.656, 23.9375, 92.3438, 83.7812, 123.125, 125.672, 89.2657, 119.687, 61.5625, 71.8124, 40.0156, 116.695, 21.5469, 113.703, -9.23438, 119.687, -12.3125, 119.687, -40.0156, 35.9062, -36.9375, 104.726, -73.875, 83.7812, -107.734, 17.9531, -70.7969, 35.9062, -135.438, 5.98436, -147.75, -26.9297, -126.203, -23.9375, -80.0313, -35.9062, -101.578, -65.8281, -86.1875, -86.7734, -104.656)
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(3.8147e-06, 0)
+texture = ExtResource("2_j8546")
+
+[node name="Locations" parent="." index="2"]
+visible = true
+
+[node name="Loc" parent="Locations" index="0"]
+position = Vector2(0, 0)

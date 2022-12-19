@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsesdly7bd67f"]
+
+[ext_resource type="Script" path="res://scenes/meat/base_tetro.gd" id="1_jasjr"]
+[ext_resource type="Texture2D" uid="uid://dpt8lbv61phjh" path="res://assets/images/meat/tetro/bone_l.png" id="3_nyvbc"]
+[ext_resource type="Texture2D" uid="uid://du3trqwgo2jyw" path="res://assets/images/world/icebox/temp_flag.png" id="4_ktb7f"]
+
+[node name="BaseTetro" type="Area2D" groups=["tetro"]]
+position = Vector2(32, 32)
+script = ExtResource("1_jasjr")
+valueMoney = 120
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+position = Vector2(16, -64)
+scale = Vector2(0.334204, 0.324873)
+texture = ExtResource("3_nyvbc")
+
+[node name="Locations" type="Node2D" parent="."]
+visible = false
+
+[node name="Loc" type="Node2D" parent="Locations"]
+position = Vector2(0, -64)
+
+[node name="Label2" type="Label" parent="Locations/Loc"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 10.0
+text = "(1,0)"
+horizontal_alignment = 1
+
+[node name="TempFlag" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -112)
+rotation = -0.245022
+texture = ExtResource("4_ktb7f")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,6 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkt0btbnab3bs"]
+[gd_scene load_steps=4 format=3 uid="uid://b722dv8axjtst"]
 
-[ext_resource type="PackedScene" uid="uid://ck3uce8y4y681" path="res://scenes/meat/tetro_base.tscn" id="1_el0s4"]
+[ext_resource type="PackedScene" uid="uid://dsesdly7bd67f" path="res://scenes/meat/base_tetro.tscn" id="1_52fbu"]
 
-[node name="Knight" instance=ExtResource("1_el0s4")]
-gridCoverage = 4
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6sbxe"]
+size = Vector2(64, 184)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo0ap"]
+size = Vector2(66, 58)
+
+[node name="Knight" instance=ExtResource("1_52fbu")]
+position = Vector2(0, 0)
+
+[node name="Label2" parent="Locations/Loc" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="Loc2" type="Node2D" parent="Locations" index="1"]
+
+[node name="Label2" type="Label" parent="Locations/Loc2" index="0"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 10.0
+text = "(1,0)"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Loc3" type="Node2D" parent="Locations" index="2"]
+position = Vector2(56, -128)
+
+[node name="Label2" type="Label" parent="Locations/Loc3" index="0"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 10.0
+text = "(1,0)"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Loc4" type="Node2D" parent="Locations" index="3"]
+position = Vector2(0, -128)
+
+[node name="Label2" type="Label" parent="Locations/Loc4" index="0"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 10.0
+text = "(1,0)"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, -60)
+shape = SubResource("RectangleShape2D_6sbxe")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(63, -123)
+shape = SubResource("RectangleShape2D_mo0ap")

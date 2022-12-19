@@ -1,12 +1,15 @@
-Node2D
-Label
+CollisionShape2D
 RichTextLabel
+Panel
+Control
+Area2D
+CollisionPolygon2D
+Node2D
+Node
+Label
 TextEdit
 Polygon2D
-CollisionShape2D
-CollisionPolygon2D
 Sprite2D
-Area2D
 LightOccluder2D
 CanvasModulate
 CPUParticles2D
@@ -17,6 +20,5 @@ VisibleOnScreenNotifier2D
 AnimatedSprite2D
 PinJoint2D
 StaticBody2D
-Control
 Camera2D
 CharacterBody2D
