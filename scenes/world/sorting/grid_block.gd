@@ -5,6 +5,8 @@ class_name GridBlock
 @onready var mySprite : Sprite2D = $FramedSprite
 
 var covered = false
+var hasDeco = false
+var decoRange = 0
 var buffs = 0
 var myLocation : Vector2 = Vector2.ZERO
 

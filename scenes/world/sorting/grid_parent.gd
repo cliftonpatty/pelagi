@@ -52,18 +52,17 @@ func recieve_tetro_pos(pos, obj) -> void:
 func add_to_grid( pos : Array[Vector2], obj : Tetro) -> void:
 	buffPositions = []
 	for grid in myGrid:
-		if obj.is_in_group('deco'):
-			for i in obj.decoRange:
-				var inc : int = i + 1
-				var loc : Vector2 = grid.myLocation
-				buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x - inc, loc.y ) )
-				buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x + inc, loc.y ) )
-				buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x, loc.y - inc ) )
-				buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x, loc.y + inc ) )
 		if grid.myLocation in pos:
 			grid.covered = true
 			grid.modulate = '#d74500' #Temp color change for debug/clarity 
-
+	if obj.is_in_group('deco'):
+		for i in obj.decoRange:
+			var inc : int = i + 1
+			var loc : Vector2 = grid.myLocation
+			buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x - inc, loc.y ) )
+			buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x + inc, loc.y ) )
+			buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x, loc.y - inc ) )
+			buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x, loc.y + inc ) )
 	refresh_grid()
 
 func remove_tetro_pos(pos, obj) -> void:
