@@ -25,6 +25,11 @@ _global_script_classes=[{
 "path": "res://scenes/tangibles/gems/gems_base.gd"
 }, {
 "base": "Area2D",
+"class": &"GridBlock",
+"language": &"GDScript",
+"path": "res://scenes/world/sorting/grid_block.gd"
+}, {
+"base": "Area2D",
 "class": &"SingleFishBase",
 "language": &"GDScript",
 "path": "res://scenes/tangibles/fish/fish_base.gd"
@@ -38,6 +43,7 @@ _global_script_class_icons={
 "Deco": "",
 "DirectionalSwimmer": "",
 "GemBase": "",
+"GridBlock": "",
 "SingleFishBase": "",
 "Tetro": ""
 }

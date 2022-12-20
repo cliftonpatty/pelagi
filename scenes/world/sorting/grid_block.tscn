@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://4gs3v0y556nq"]
+
+[ext_resource type="Script" path="res://scenes/world/sorting/grid_block.gd" id="1_v61df"]
+[ext_resource type="Texture2D" uid="uid://dxkb8i40q1es2" path="res://assets/images/world/icebox/temp_icebox_gridblock.png" id="1_vvu4h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_so35d"]
+size = Vector2(64, 64)
+
+[node name="GridBlock" type="Area2D"]
+script = ExtResource("1_v61df")
+
+[node name="FramedSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(0.426667, 0.426667)
+texture = ExtResource("1_vvu4h")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_so35d")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 32.0
+offset_bottom = 15.0
+text = "1"

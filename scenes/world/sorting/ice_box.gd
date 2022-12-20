@@ -35,5 +35,5 @@ func tetro_pos_removal(pos, obj):
 func new_hover(obj : Tetro):
 	textLabel.text = str( 
 		"VALUE: ", obj.newValue,'\n',
-		"NAME: ", obj.name 
+		"NAME: ", obj.name
 		)

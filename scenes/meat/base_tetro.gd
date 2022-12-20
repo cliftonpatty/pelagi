@@ -6,6 +6,7 @@ class_name Tetro
 @export var valueMoney : int = 100 
 @export var valueOnSpecial : bool = false
 var newValue : int
+var buffData : int = 0 #Eventually an array of dictionaries, just a flat amount now
 
 #Init Vars and References-------------------------------------------------------
 @onready var sprite = $Sprite2D
@@ -141,3 +142,8 @@ func true_hover_actions(active : bool):
 		emit_signal("emit_hovered", self)
 	else:
 		pass
+
+
+func get_buffed(buff):
+	print(buff)
+	pass

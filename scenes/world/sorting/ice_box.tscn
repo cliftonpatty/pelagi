@@ -44,11 +44,20 @@ position = Vector2(1032, 480)
 valueMoney = 100
 
 [node name="BaseDeco" parent="Tetro" groups=["deco"] instance=ExtResource("5_qfgc5")]
-position = Vector2(1248, 120)
+position = Vector2(1272, 128)
 priority = 1.0
 
 [node name="BaseDeco2" parent="Tetro" groups=["deco"] instance=ExtResource("5_qfgc5")]
-position = Vector2(864, 96)
+position = Vector2(888, 104)
+priority = 1.0
+valueMoney = 119
+
+[node name="BaseDeco3" parent="Tetro" groups=["deco"] instance=ExtResource("5_qfgc5")]
+position = Vector2(1264, 240)
+priority = 1.0
+
+[node name="BaseDeco4" parent="Tetro" groups=["deco"] instance=ExtResource("5_qfgc5")]
+position = Vector2(880, 216)
 priority = 1.0
 valueMoney = 119
 
