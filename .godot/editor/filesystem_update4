@@ -3,13 +3,11 @@ res://scenes/player/player.gd
 res://scenes/world/fishing/world_generation/cave_walls.gd
 res://scenes/world/sorting/grid_parent.tscn
 res://scenes/world/sorting/ice_box.tscn
+res://scenes/world/sorting/grid_block.tscn
 res://scenes/meat/base_deco.tscn
 res://scenes/meat/base_tetro.tscn
 res://scenes/meat/tetro/small_diag.tscn
 res://scenes/meat/tetro/knight.tscn
 res://scenes/world/sorting/grid_parent.gd
-res://scenes/meat/base_tetro.gd
-res://scenes/world/sorting/grid_block.tscn
 res://scenes/world/sorting/grid_block.gd
-res://scenes/world/sorting/ice_box.gd
 res://scenes/meat/base_deco.gd

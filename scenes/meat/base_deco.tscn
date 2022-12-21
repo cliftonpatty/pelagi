@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://baf0n0be7uc73" path="res://assets/images/meat/tetro/deco_crystal.png" id="2_j8546"]
 
 [node name="BaseDeco" instance=ExtResource("1_y5ved")]
-position = Vector2(0, 0)
 script = ExtResource("2_g6ynj")
 decoRange = 1
+decoSpreadType = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 position = Vector2(3.8147e-06, 0)

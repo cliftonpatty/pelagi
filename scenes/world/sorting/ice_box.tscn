@@ -46,19 +46,23 @@ valueMoney = 100
 [node name="BaseDeco" parent="Tetro" groups=["deco"] instance=ExtResource("5_qfgc5")]
 position = Vector2(1272, 128)
 priority = 1.0
+decoSpreadType = 4
 
 [node name="BaseDeco2" parent="Tetro" groups=["deco"] instance=ExtResource("5_qfgc5")]
 position = Vector2(888, 104)
 priority = 1.0
+decoSpreadType = 1
 valueMoney = 119
 
 [node name="BaseDeco3" parent="Tetro" groups=["deco"] instance=ExtResource("5_qfgc5")]
 position = Vector2(1264, 240)
 priority = 1.0
+decoSpreadType = 0
 
 [node name="BaseDeco4" parent="Tetro" groups=["deco"] instance=ExtResource("5_qfgc5")]
 position = Vector2(880, 216)
 priority = 1.0
+decoSpreadType = 3
 valueMoney = 119
 
 [node name="Control" type="Control" parent="."]

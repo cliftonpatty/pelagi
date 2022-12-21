@@ -3,6 +3,7 @@ extends Area2D
 class_name GridBlock
 
 @onready var mySprite : Sprite2D = $FramedSprite
+@onready var label = $Label.text
 
 var covered = false
 var hasDeco = false
@@ -19,5 +20,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Label.text = str(buffs)
+	#$Label.text = str(buffs)
 	pass
