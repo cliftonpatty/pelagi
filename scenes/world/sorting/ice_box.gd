@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var gridRef : Node2D = $GridParent
-@onready var textLabel : RichTextLabel = $Control/Panel/RichTextLabel
+@onready var textLabel : RichTextLabel = $Panel/RichTextLabel
 @onready var tetroParent : Node2D = $Tetro
 
 var lastPickup 
@@ -20,7 +20,8 @@ func _process(delta: float) -> void:
 
 func tetro_pos_handoff(pos, obj):
 	gridRef.recieve_tetro_pos(pos, obj)
-
+	for tetro in tetroParent.get_children():
+		tetro.refresh_grid_status()
 
 func tetro_pos_removal(pos, obj):
 	gridRef.remove_tetro_pos(pos, obj)
@@ -30,10 +31,12 @@ func tetro_pos_removal(pos, obj):
 		lastPickup.z_index = 0
 	lastPickup = obj
 	lastPickup.z_index = 10
-
+	for tetro in tetroParent.get_children():
+		tetro.refresh_grid_status()
 
 func new_hover(obj : Tetro):
 	textLabel.text = str( 
 		"VALUE: ", obj.newValue,'\n',
-		"NAME: ", obj.name
+		"NAME: ", obj.name,'\n',
+		"BUFFS: ", obj.buffData
 		)

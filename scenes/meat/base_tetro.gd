@@ -6,20 +6,27 @@ class_name Tetro
 @export var valueMoney : int = 100 
 @export var valueOnSpecial : bool = false
 var newValue : int
-var buffData : int = 0 #Eventually an array of dictionaries, just a flat amount now
+var buffData : Array = []#Eventually array of dictionaries, just a flat amount now
 
 #Init Vars and References-------------------------------------------------------
 @onready var sprite = $Sprite2D
 @onready var gridSize : int = SortingGlobals.gridSize #Individual grid block size
 @onready var locationParent : Node2D = $Locations #Parent to individual location markers 
-var gridCoverage : int #Lets us know how many total grid blocks this will cover, if needed 
+
+#WHAT GRID BLOCKS ARE BELOW US--------------------------------------------------
+#Think of these tetros like moving scanners, updating a 'basket' with whatever
+#objects sit below them 
+var blocksBelow : Array[GridBlock] = []
 
 #Grab and Move------------------------------------------------------------------
 var mouseOver : bool = false
 var trueHover : bool = false #Is the mouse over and is this the top object?
-var held : bool = false
-var pickupPoint : Vector2
-var dropTarget : Vector2
+var held : bool : 
+	set(v):
+		held = v
+		update_held(v)
+var _pickupPoint : Vector2
+var _dropTarget : Vector2
 var posArray : Array[Vector2]
 
 #Flagged as invalid on the grid (or off the grid)-------------------------------
@@ -38,9 +45,9 @@ signal emit_hovered(obj)
 
 
 func _ready() -> void:
+	held = false
 	newValue = valueMoney
-	gridCoverage = locationParent.get_child_count()
-	dropTarget = global_position
+	_dropTarget = global_position
 	spriteScale = sprite.scale
 	originalScale = sprite.scale
 
@@ -48,7 +55,6 @@ func _ready() -> void:
 func _on_mouse_entered() -> void:
 	mouseOver = true
 	add_to_group('hovered')
-
 
 
 func _on_mouse_exited() -> void:
@@ -67,11 +73,11 @@ func _physics_process(delta: float) -> void:
 
 	sprite.scale = lerp(sprite.scale, spriteScale, 10 * delta)
 	if held:
-		dropTarget = get_global_mouse_position() + pickupPoint
+		_dropTarget = get_global_mouse_position() + _pickupPoint
 	
 	global_position = lerp( 
 		global_position,
-		snapped(dropTarget, Vector2(gridSize, gridSize)),
+		snapped(_dropTarget, Vector2(gridSize, gridSize)),
 		10 * delta
 		)
 
@@ -96,35 +102,31 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("MouseLeft"):
 		if mouseOver and is_on_top():
 			held = true
-			pickupPoint = global_position - get_global_mouse_position()
+			_pickupPoint = global_position - get_global_mouse_position()
 			spriteScale *= 1.1
 			emit_signal("discard_position", get_pos_array(), self)
 			
 	if event.is_action_released("MouseLeft"):
 		if held:
 			emit_signal("emit_position", get_pos_array(), self)
-			
+			dropped_extended() # Extended drop functionality if needed 
 		held = false
 		spriteScale = originalScale
-		dropTarget = global_position
-		
-		#Runs EVERY tetros settle function - this is to calculate 
-		#buffs/debuffs/adjacencies/blah blah blah
-		on_settle() 
+		_dropTarget = global_position
 
 	if event.is_action_pressed("RotateTetro"):
 		if held:
 			rotation = rotation + deg_to_rad(90)
 
 #Called externally - from the grid 
-func validate_stack(val : bool):
+func validate_stack(val : bool) -> void:
 	$TempFlag.visible = !val
 	flagged = !val
 
 
-#What to do once we are placed and happy 
-func on_settle():
+func dropped_extended(): # Extended drop functionality if needed 
 	pass
+
 
 #Multiple objects can be hovered at once - next two functions are solving this
 #Ensure that we only grab the top-most tetro
@@ -136,7 +138,7 @@ func is_on_top() -> bool:
 	return true
 
 
-func true_hover_actions(active : bool):
+func true_hover_actions(active : bool) -> void:
 	trueHover = active
 	if trueHover:
 		emit_signal("emit_hovered", self)
@@ -144,6 +146,36 @@ func true_hover_actions(active : bool):
 		pass
 
 
-func get_buffed(buff):
-	print(buff)
+func refresh_grid_status():
+	apply_buffs()
+
+
+#Run whenever held is updated---------------------------------------------------
+func update_held(v) -> void:
 	pass
+
+#UPDATE OUR LIST OF BLOCKS BELOW US---------------------------------------------
+func update_blocks_below(block, addIt : bool):
+	if addIt:
+		blocksBelow.append(block)
+	else:
+		blocksBelow.erase(block)
+	apply_buffs()
+	
+func apply_buffs():
+	newValue = valueMoney
+	
+	if blocksBelow.any(func(el): return el.buffTotal > 0 ):
+		var compareValue : int = 0 #Find highest buff 
+		for block in blocksBelow:
+			if block.buffTotal > compareValue:
+				compareValue = block.buffTotal
+		newValue *= compareValue
+		
+	if blocksBelow.any(func(el): return el.debuffTotal > 0 ):
+		var compareValue : int = 0 #Find highest debuff 
+		for block in blocksBelow:
+			if block.debuffTotal > compareValue:
+				compareValue = block.debuffTotal
+		newValue -= (compareValue * 4)
+

@@ -1,15 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://b722dv8axjtst"]
+[gd_scene load_steps=5 format=3 uid="uid://b722dv8axjtst"]
 
 [ext_resource type="PackedScene" uid="uid://dsesdly7bd67f" path="res://scenes/meat/base_tetro.tscn" id="1_52fbu"]
+[ext_resource type="Texture2D" uid="uid://dpt8lbv61phjh" path="res://assets/images/meat/tetro/bone_l.png" id="2_fn5ug"]
+[ext_resource type="Texture2D" uid="uid://c5n3gpcwyyxbx" path="res://assets/images/meat/tetro/bone_l_normal.png" id="3_db2jq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6sbxe"]
-size = Vector2(64, 184)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo0ap"]
-size = Vector2(66, 58)
+[sub_resource type="CanvasTexture" id="CanvasTexture_vvcfo"]
+diffuse_texture = ExtResource("2_fn5ug")
+normal_texture = ExtResource("3_db2jq")
 
 [node name="Knight" instance=ExtResource("1_52fbu")]
 position = Vector2(0, 0)
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = 6.27969
+texture = SubResource("CanvasTexture_vvcfo")
 
 [node name="Label2" parent="Locations/Loc" index="0"]
 metadata/_edit_use_anchors_ = true
@@ -26,7 +30,7 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Loc3" type="Node2D" parent="Locations" index="2"]
-position = Vector2(56, -128)
+position = Vector2(64, -128)
 
 [node name="Label2" type="Label" parent="Locations/Loc3" index="0"]
 offset_left = -16.0
@@ -49,10 +53,8 @@ text = "(1,0)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(0, -60)
-shape = SubResource("RectangleShape2D_6sbxe")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="4"]
-position = Vector2(63, -123)
-shape = SubResource("RectangleShape2D_mo0ap")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
+visible = false
+position = Vector2(16, -64)
+scale = Vector2(0.334204, 0.324873)
+polygon = PackedVector2Array(197.5, -285.4, 197.5, -275.3, 201.8, -223.1, 232.4, -216.3, 230.5, -198.5, 226.8, -198.5, 217.6, -179.5, 233.7, -147.5, 222.4, -147.5, 192.4, -93.5, 184.3, -93.5, 87.9, -97.3, 49.5, -68.5, 51.5, 240.5, 41.9, 240.5, 6.79999, 249.6, 23.6, 297.5, -5.70001, 297.5, -30.9, 271.4, -63.6, 295.2, -74.5, 289.6, -74.5, 287.1, -87.5, 276.1, -87.5, 266.1, -80.3, 251.7, -126.5, 241.5, -126.5, 234.6, -135.5, 214.6, -135.5, 202.3, -123.7, -180.9, -140.4, -275.5, -129.8, -275.5, -109.5, -284.9, -109.5, -289.6)

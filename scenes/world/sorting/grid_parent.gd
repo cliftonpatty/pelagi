@@ -32,21 +32,18 @@ func _ready() -> void:
 
 			#ADD TO THE GRID DICT
 			myGrid[blockTrueGrid] = block
-			
-			
-			
+
 			if index == 0:
 				gridStart = blockTrueGrid
-				
+
 			index += 1
-			
+
 			if index == (gridDimensions.x * gridDimensions.y):
 				gridExtent = blockTrueGrid
 
 		xPos+=gridSize
 
-	print(gridStart,'\n' , gridExtent,'\n' , myGrid)
-
+#ADD or REMOVE from GRID--------------------------------------------------------
 
 func recieve_tetro_pos(pos, obj) -> void:
 	var allValid = check_valid_loop(pos, obj)
@@ -59,30 +56,23 @@ func recieve_tetro_pos(pos, obj) -> void:
 		obj.validate_stack(false)
 
 
-func location_within_bounds(loc) -> bool:
-	if loc.x > gridExtent.x or loc.y > gridExtent.y:
-		return false
-	elif loc.y < gridStart.y or loc.y < gridStart.y:
-		return false
-	else:
-		return true
-	
 func add_to_grid( pos : Array[Vector2], obj : Tetro) -> void:
 	buffPositions = []
 	for loc in pos:
 		if location_within_bounds(loc):
 			var gridMatch = myGrid[loc]
 			gridMatch.covered = true
-			gridMatch.modulate = '#d74500' #Temp color change for debug/clarity 
-	#if obj.is_in_group('deco'):
-	#	for i in obj.decoRange:
-	#		var inc : int = i + 1
-	#		#var loc : Vector2 = grid.myLocation
-	#		buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x - inc, loc.y ) )
-	#		buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x + inc, loc.y ) )
-	#		buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x, loc.y - inc ) )
-	#		buffPositions += myGrid.filter( func(el):return el.myLocation == Vector2(loc.x, loc.y + inc ) )
+			gridMatch.modulate = '#d74500' #Temp color change for debug/clarity
+			obj.update_blocks_below(gridMatch, true)
+	if obj.is_in_group('deco'):
+		obj.updated_deco_coverage()
+		for buffPos in obj.buffLocations:
+			if location_within_bounds(buffPos):
+				var gridMatch = myGrid[buffPos]
+				gridMatch.update_buffs(obj.buffLocations[buffPos], true)
+				buffPositions.append(gridMatch)
 	refresh_grid()
+
 
 func remove_tetro_pos(pos, obj) -> void:
 	if !obj.flagged:
@@ -91,17 +81,29 @@ func remove_tetro_pos(pos, obj) -> void:
 				var gridMatch = myGrid[loc]
 				gridMatch.covered = false
 				gridMatch.modulate = '#fff'
+				obj.update_blocks_below(gridMatch, false)
+		if obj.is_in_group('deco'):
+			for buffPos in obj.buffLocations:
+				if location_within_bounds(buffPos):
+					var gridMatch = myGrid[buffPos]
+					gridMatch.update_buffs(obj.buffLocations[buffPos], false)
 		refresh_grid()
 
+#REFRESH our GRID to check for BUFFS--------------------------------------------
+#As of now, this is just for debugging and shit...
 func refresh_grid() -> void: 
-	#Wipe our buff values for safety 
-	#for block in myGrid:
-		#block.buffs = 0
+	#for item in myGrid:
+	#	var itemObj = myGrid[item]
+	#	if itemObj.buffs.size() > 0:
+	#		itemObj.modulate = '#ff87fc'
+	#	if itemObj.debuffs.size() > 0:
+	#		itemObj.modulate = '#ff87fc'
+	#	else:
+	#		itemObj.modulate = '#fff'
+	pass 
 
-	for buffObj in buffPositions:
-		buffObj.buffs += 1
+#VALIDATE POSITIONS-------------------------------------------------------------
 
-#This and check_valid_pos could easily be combined 
 func check_valid_loop(pos,obj):
 	var allValid = true
 	for vect in pos:
@@ -114,14 +116,19 @@ func check_valid_loop(pos,obj):
 
 func check_valid_pos(vect, obj): 
 	var relevantBlock = myGrid.find_key(vect)
-	if vect.x > gridExtent.x or vect.y > gridExtent.y:
-		print('invalid : out of bounds')
-		return false
-	elif vect.x < gridStart.x or vect.y < gridStart.y:
-		print('invalid : out of bounds')
+	if !location_within_bounds(vect):
 		return false
 	elif myGrid[vect].covered:
 		print('invalid : covered')
+		return false
+	else:
+		return true
+
+
+func location_within_bounds(loc) -> bool:
+	if loc.x > gridExtent.x or loc.y > gridExtent.y:
+		return false
+	elif loc.x < gridStart.x or loc.y < gridStart.y:
 		return false
 	else:
 		return true
