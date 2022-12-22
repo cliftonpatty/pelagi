@@ -1,5 +1,6 @@
-PointLight2D
 DirectionalLight2D
+WorldEnvironment
+PointLight2D
 ColorRect
 CPUParticles2D
 Label

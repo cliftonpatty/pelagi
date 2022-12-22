@@ -1,18 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://b722dv8axjtst"]
+[gd_scene load_steps=7 format=3 uid="uid://b722dv8axjtst"]
 
 [ext_resource type="PackedScene" uid="uid://dsesdly7bd67f" path="res://scenes/meat/base_tetro.tscn" id="1_52fbu"]
 [ext_resource type="Texture2D" uid="uid://dpt8lbv61phjh" path="res://assets/images/meat/tetro/bone_l.png" id="2_fn5ug"]
-[ext_resource type="Texture2D" uid="uid://c5n3gpcwyyxbx" path="res://assets/images/meat/tetro/bone_l_normal.png" id="3_db2jq"]
+[ext_resource type="Texture2D" uid="uid://b4bt4anomqo0m" path="res://assets/images/meat/tetro/bone_l_n.png" id="4_rbwvq"]
+[ext_resource type="Texture2D" uid="uid://b6agcgpcws8i8" path="res://assets/images/meat/tetro/bone_l_s.png" id="5_ai0bs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8md7p"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vvcfo"]
 diffuse_texture = ExtResource("2_fn5ug")
-normal_texture = ExtResource("3_db2jq")
+normal_texture = ExtResource("4_rbwvq")
+specular_texture = ExtResource("5_ai0bs")
 
 [node name="Knight" instance=ExtResource("1_52fbu")]
 position = Vector2(0, 0)
 
 [node name="Sprite2D" parent="." index="0"]
-rotation = 6.27969
+material = SubResource("ShaderMaterial_8md7p")
 texture = SubResource("CanvasTexture_vvcfo")
 
 [node name="Label2" parent="Locations/Loc" index="0"]

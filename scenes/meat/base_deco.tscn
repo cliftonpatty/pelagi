@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7h6ejlf30pyj"]
+[gd_scene load_steps=7 format=3 uid="uid://c7h6ejlf30pyj"]
 
 [ext_resource type="PackedScene" uid="uid://dsesdly7bd67f" path="res://scenes/meat/base_tetro.tscn" id="1_y5ved"]
 [ext_resource type="Script" path="res://scenes/meat/base_deco.gd" id="2_g6ynj"]
 [ext_resource type="Texture2D" uid="uid://baf0n0be7uc73" path="res://assets/images/meat/tetro/deco_crystal.png" id="2_j8546"]
+[ext_resource type="Texture2D" uid="uid://clsugw3s1hi8j" path="res://assets/images/meat/tetro/maps/deco_crystal_n.png" id="4_paq0j"]
+[ext_resource type="Texture2D" uid="uid://ccqrv5fi0cpqx" path="res://assets/images/meat/tetro/maps/deco_crystal_s.png" id="5_7xpkn"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cdewy"]
+diffuse_texture = ExtResource("2_j8546")
+normal_texture = ExtResource("4_paq0j")
+specular_texture = ExtResource("5_7xpkn")
 
 [node name="BaseDeco" instance=ExtResource("1_y5ved")]
 position = Vector2(0, 0)
@@ -24,7 +31,7 @@ polygon = PackedVector2Array(-95.7499, -98.5, -95.7499, -73.875, -113.703, -40.0
 
 [node name="Sprite2D" parent="." index="2"]
 position = Vector2(3.8147e-06, 0)
-texture = ExtResource("2_j8546")
+texture = SubResource("CanvasTexture_cdewy")
 
 [node name="Loc" parent="Locations" index="0"]
 position = Vector2(0, 0)

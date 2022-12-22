@@ -53,7 +53,7 @@ decoBuffType = 1
 decoDebuffType = 3
 
 [node name="BaseDeco2" parent="Tetro" groups=["deco"] instance=ExtResource("5_qfgc5")]
-position = Vector2(1224, 120)
+position = Vector2(1104, 232)
 priority = 1.0
 decoRange = 1
 decoBuffType = null
@@ -80,3 +80,11 @@ text = "Value:"
 fit_content_height = true
 scroll_active = false
 text_direction = 1
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+position = Vector2(664, -24)
+rotation = 0.0172547
+energy = 0.5
+shadow_enabled = true
+max_distance = 10454.0
