@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://da230xad1fhku"]
+
+[ext_resource type="Script" path="res://resources/drillable_stats.gd" id="1_5ab1w"]
+
+[resource]
+script = ExtResource("1_5ab1w")
+myID = null
+value = 51
+depthTier = 1
+rarity = 1.0
+solo = false

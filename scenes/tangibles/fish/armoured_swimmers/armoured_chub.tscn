@@ -18,6 +18,7 @@ particles_anim_loop = false
 newSprite = ExtResource("2_of8rj")
 chunkImage = ExtResource("3_ng3ft")
 chunkImage_HFrames = 3
+myID = "armoured_chub"
 swimSpeed = 250
 depthTier = 3
 rarity = 0.3
