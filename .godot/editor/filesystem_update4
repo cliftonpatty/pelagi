@@ -1,13 +1,7 @@
-res://scenes/meat/tetro/knight.tscn
+res://addons/pelagi_functions/update_fish.tscn
 res://assets/style_boxes/deco_range_helper.tres
 res://scenes/player/player.gd
 res://scenes/world/fishing/world_generation/cave_walls.gd
-res://assets/shaders/knight.gdshader
-res://assets/shaders/edge_highlights.gdshader
-res://scenes/world/sorting/ice_box.tscn
-res://scenes/world/sorting/grid_parent.tscn
-res://scenes/world/sorting/grid_block.tscn
-res://scenes/meat/base_deco.tscn
-res://scenes/meat/base_tetro.tscn
-res://scenes/meat/deco_range_helper.tscn
-res://scenes/meat/tetro/small_diag.tscn
+res://addons/pelagi_functions/fish_button.gd
+res://addons/pelagi_functions/pelagi_funk.gd
+res://addons/pelagi_functions/import_csv.gd

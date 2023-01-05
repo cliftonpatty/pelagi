@@ -76,7 +76,7 @@ window/stretch/scale=0.85
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/pelagi_functions/plugin.cfg")
 
 [input]
 

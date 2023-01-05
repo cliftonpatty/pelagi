@@ -1,10 +1,15 @@
+Label
+MarginContainer
+VBoxContainer
+Control
+BoxContainer
+Button
+HBoxContainer
 DirectionalLight2D
 WorldEnvironment
 PointLight2D
 ColorRect
 CPUParticles2D
-Label
-Control
 Node2D
 Panel
 CollisionShape2D
@@ -25,4 +30,3 @@ AnimatedSprite2D
 PinJoint2D
 StaticBody2D
 Camera2D
-CharacterBody2D
