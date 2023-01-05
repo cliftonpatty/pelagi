@@ -31,6 +31,9 @@ func _ready() -> void:
 	if len(spawnableFish):
 		generate_fish_pile(dTier)
 
+#Fish Pile generation 
+#This is the pool of fish that will be spawned 
+
 func generate_fish_pile(depthTier):
 	dTier = depthTier
 	#This runs at start, and also whenever a new 'depth teir' is reached
@@ -55,8 +58,6 @@ func generate_fish_pile(depthTier):
 				fishTotalRarity += fishToAdd.rarity 
 			
 	fishPile.sort_custom( func(a,b): return a.instance.rarity > b.instance.rarity )
-	
-	print( fishPile )
 
 
 func _on_timer_timeout() -> void:

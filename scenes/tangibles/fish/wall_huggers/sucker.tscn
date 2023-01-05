@@ -7,6 +7,7 @@
 size = Vector2(171, 42)
 
 [node name="Sucker" instance=ExtResource("1_lj7d3")]
+myID = "sucker"
 
 [node name="MainSprite" parent="." index="0"]
 texture = ExtResource("2_autq7")

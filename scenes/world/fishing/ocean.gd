@@ -1,19 +1,30 @@
 extends Node2D
 
+#Player-------------------------------------------------------------------------
+@onready var playerPackage := $PlayerPackage
 @onready var player := $PlayerPackage/Player
+
+#UI-----------------------------------------------------------------------------
 @onready var camera: Camera2D = $Camera2D
-@onready var UI := $Camera2D/Control/RichTextLabel
+@onready var depthTemp := $CanvasLayer/Control/DepthTemp
+@onready var ectTemp := $CanvasLayer/Control/EctTemp
+
+#ProcGen------------------------------------------------------------------------
 @onready var fishGenerator = $FishGenerator
+
+#World--------------------------------------------------------------------------
 @onready var claw = $Claw
+var depth: int #Current Depth
 
+#On what increment should we be upgrading the depth tier? 
 @export var depthTierUpdateInc: int = 20
-
-var depth: int
-
 
 
 func _physics_process(delta: float) -> void:
 	fishGenerator.position.y += Globals.dropSpeed * delta
+	
+	ectTemp.text = str(playerPackage.itemsOnLine)
+	
 	if Globals.underwater:
 		
 		fishGenerator.depth = depth
@@ -25,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		if oldDepth != newDepth:
 			Globals.emit_signal("depth_tier_updated", depth/depthTierUpdateInc + 1)
 		
-		UI.text = str(depth)
+		depthTemp.text = str(depth)
 		
 		if Globals.ascending:
 			player_camera_position( 
@@ -40,7 +51,7 @@ func _physics_process(delta: float) -> void:
 			
 	else:
 		fishGenerator.depth = -1
-		UI.text = 'Above Water'
+		depthTemp.text = 'Above Water'
 		
 		camera.global_position = lerp( camera.global_position, claw.global_position, 20 * delta )
 		player.global_position.x = lerp( player.global_position.x, claw.global_position.x, 20 * delta )

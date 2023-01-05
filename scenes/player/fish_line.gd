@@ -7,6 +7,8 @@ var playerRef : CharacterBody2D
 var baseIncr := 10
 var arcStart := ((baseIncr * baseIncr)/2)*-1
 
+signal confirm_caught(item)
+
 func _physics_process(delta):
 	if playerRef:
 		var goalPos = playerRef.global_position
@@ -24,12 +26,7 @@ func _physics_process(delta):
 					chunk.global_position.y, 
 					chunks.get_child(myDex-1).global_position.y, 
 					5 * delta 
-					)
-				chunk.rotation = lerp_angle(
-					chunk.rotation, 
-					chunks.get_child(myDex-1).rotation, 
-					5 * delta
-					)
+					) 
 			else:
 				chunk.global_position.x = lerp( 
 					chunk.global_position.x, 
@@ -57,6 +54,9 @@ func new_fish_onboarding(fish):
 		hookGroup.add_child(fish)
 		fish.global_position = hookGroup.global_position
 		fish.rotation = deg_to_rad((arcPosition * 4) - 90)
+		
+		emit_signal("confirm_caught",fish)
+	
 	
 func find_open_group():
 	if chunks.get_child_count() > 0:

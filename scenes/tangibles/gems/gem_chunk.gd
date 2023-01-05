@@ -2,6 +2,8 @@ extends Area2D
 
 @onready var caught : bool = false
 
+@export var myID: String
+
 #Tween reference, so we can kill it if needed
 var myTween: Tween
 

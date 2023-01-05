@@ -4,6 +4,8 @@ class_name SingleFishBase
 
 #Export Variables---------------------------------------------------------------
 @export_category("Fish Stats")
+@export var myID: String
+##How much is the fish worth if drilled?
 ##How fast the fish can swim 
 @export var swimSpeed: int
 ##How much is the fish worth if drilled?
@@ -22,6 +24,10 @@ class_name SingleFishBase
 @onready var bloodSplat: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
+	
+	if myID == null:
+		push_warning(self.name, " has no ID, fix when possible")
+		
 	self.body_entered.connect(our_body_entered)
 	self.area_entered.connect(our_area_entered)
 	children_ready()
