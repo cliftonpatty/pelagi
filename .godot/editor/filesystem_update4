@@ -1,7 +1,13 @@
-res://addons/pelagi_functions/update_fish.tscn
+res://scenes/world/sorting/ice_box.tscn
 res://assets/style_boxes/deco_range_helper.tres
 res://scenes/player/player.gd
+res://scenes/tangibles/fish/wall_hugger.gd
 res://scenes/world/fishing/world_generation/cave_walls.gd
-res://addons/pelagi_functions/fish_button.gd
-res://addons/pelagi_functions/pelagi_funk.gd
-res://addons/pelagi_functions/import_csv.gd
+res://scenes/world/fishing/ocean.tscn
+res://scenes/player/fish_line.tscn
+res://scenes/tangibles/fish/fish_base.tscn
+res://scenes/tangibles/fish/wall_huggers/sucker.tscn
+res://scenes/tangibles/gems/gems_base.tscn
+res://scenes/tangibles/gems/gem_chunk.tscn
+res://scenes/tangibles/fish/directional_swimmers.tscn
+res://scenes/tangibles/fish/directional_swimmer/cuddle.tscn
