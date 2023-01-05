@@ -7,8 +7,11 @@ extends Resource
 ##How much is the fish worth if drilled?
 @export var value: int
 ##Depth tier, a parent of rarity, controlling at what depth we see this fish, starts at 1, has no set end
-@export var depthTier : int = 1
+@export var depthTier : int
 ##Rarity of the fish, lower number = more rare (rarer?)
-@export_range(0,1.0) var rarity : float = 1.0
-##Is this a fish that only spawns once?
-@export var solo: bool = false
+@export var rarity : float
+##Speed, defaults to zero
+@export var swimSpeed : int = 0
+##What is 'dropped' by this item in the icebox phase
+@export var lootMeat : Dictionary
+@export var lootGems : Dictionary

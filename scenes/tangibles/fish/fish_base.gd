@@ -4,18 +4,13 @@ class_name SingleFishBase
 
 #Export Variables---------------------------------------------------------------
 @export_category("Fish Stats")
-@export var myID: String
-##How much is the fish worth if drilled?
-##How fast the fish can swim 
-@export var swimSpeed: int
-##How much is the fish worth if drilled?
-@export var value: int
-##Depth tier, a parent of rarity, controlling at what depth we see this fish, starts at 1, has no set end
-@export var depthTier : int = 1
-##Rarity of the fish, lower number = more rare (rarer?)
-@export_range(0,1.0) var rarity : float = 1.0
 ##Is this a fish that only spawns once?
 @export var solo: bool = false
+
+#Resource!----------------------------------------------------------------------
+@export_category("CSV Stats")
+##Is this a fish that only spawns once?
+@export var generalStats: Resource
 
 #Other Variables----------------------------------------------------------------
 @onready var caught : bool = false ## A safety variable for state swapping 
@@ -25,7 +20,7 @@ class_name SingleFishBase
 
 func _ready() -> void:
 	
-	if myID == null:
+	if generalStats.myID == null:
 		push_warning(self.name, " has no ID, fix when possible")
 		
 	self.body_entered.connect(our_body_entered)
