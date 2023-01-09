@@ -1,0 +1,24 @@
+[
+	{
+		"myID" : "armoured_chub",
+		"value" : 50,
+		"depthTier" : 1,
+		"rarity" : 0.9,
+		"swimSpeed" : 30,
+		"loot" : {
+			"meat" : [
+				{ 
+					"type" : "knight",
+					"amount" : 2
+				}
+			],
+			"gems" : [
+				{ 
+					"type" : "knight",
+					"amount" : 2
+				}
+			]
+		}
+	}
+]
+
