@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/drillables/gems/gems_base.gd" id="1_ul3xl"]
+
+[node name="GemsBase" type="Area2D" groups=["drillable", "gems"]]
+collision_layer = 12
+collision_mask = 2
+script = ExtResource("1_ul3xl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://drvagamkdo6js"]
+
+[ext_resource type="PackedScene" uid="uid://oa2kj6mg75vm" path="res://scenes/drillables/fish/base_swimmer.tscn" id="1_kmlmw"]
+[ext_resource type="Texture2D" uid="uid://bbyepf0ra6o8d" path="res://assets/images/tangibles/fish/pig.png" id="2_ukh5g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xk603"]
+radius = 36.0139
+
+[node name="Pig" groups=["fish"] instance=ExtResource("1_kmlmw")]
+myID = "pig"
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource("CircleShape2D_xk603")
+
+[node name="Anchor" parent="." index="1"]
+position = Vector2(37, 0)
+
+[node name="PrimarySprite" parent="Anchor" index="0"]
+position = Vector2(-39, 0)
+scale = Vector2(0.101333, 0.101333)
+texture = ExtResource("2_ukh5g")

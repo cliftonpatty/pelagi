@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://betcukpb07lly"]
+[gd_scene load_steps=3 format=3 uid="uid://betcukpb07lly"]
 
 [ext_resource type="Texture2D" uid="uid://bmlipw0lvs3ft" path="res://assets/images/world/props/fishing/claw.png" id="1_amy1w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2y6lt"]
+size = Vector2(1289.35, 191.944)
 
 [node name="Claw" type="Sprite2D"]
 position = Vector2(-6.10352e-05, 0)
 scale = Vector2(0.415714, 0.489726)
 texture = ExtResource("1_amy1w")
 offset = Vector2(41.074, -435.067)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(12.0276, 44.9231)
+shape = SubResource("RectangleShape2D_2y6lt")

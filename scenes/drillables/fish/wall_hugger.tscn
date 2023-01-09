@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwc72x5605ahx"]
+
+[ext_resource type="PackedScene" uid="uid://oa2kj6mg75vm" path="res://scenes/drillables/fish/base_swimmer.tscn" id="1_3wonl"]
+[ext_resource type="Script" path="res://scenes/drillables/fish/wall_hugger.gd" id="2_g5cr2"]
+
+[node name="WallHugger" groups=["fish"] instance=ExtResource("1_3wonl")]
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("2_g5cr2")
+
+[node name="PrimarySprite" type="Sprite2D" parent="." index="0"]

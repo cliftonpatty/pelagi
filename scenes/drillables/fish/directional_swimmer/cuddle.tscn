@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4jjex8we2pfq"]
+
+[ext_resource type="PackedScene" uid="uid://oa2kj6mg75vm" path="res://scenes/drillables/fish/base_swimmer.tscn" id="1_u6tts"]
+[ext_resource type="Texture2D" uid="uid://crew5vcigk8ih" path="res://assets/images/tangibles/fish/cuddle.png" id="2_cmfp7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_salgh"]
+size = Vector2(113, 58)
+
+[node name="Cuddle" groups=["fish"] instance=ExtResource("1_u6tts")]
+myID = "cuddle"
+
+[node name="CollisionShape" parent="." index="0"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_salgh")
+
+[node name="Anchor" parent="." index="1"]
+position = Vector2(57, 0)
+
+[node name="PrimarySprite" parent="Anchor" index="0"]
+position = Vector2(-57, 0)
+scale = Vector2(0.106175, 0.106176)
+texture = ExtResource("2_cmfp7")
+flip_h = true

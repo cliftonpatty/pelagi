@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwajgy0plsqgv"]
+
+[ext_resource type="Texture2D" uid="uid://bgr6lfh5euhu4" path="res://assets/images/tangibles/fish/chub.png" id="1_4cxim"]
+[ext_resource type="PackedScene" uid="uid://m0bkx3kdwmrc" path="res://scenes/drillables/fish/base_armoured_swimmer.tscn" id="1_7e8uh"]
+[ext_resource type="Texture2D" uid="uid://bcu12dc8t4r3q" path="res://assets/images/effects/chub_armour_broken.png" id="2_ff1ed"]
+[ext_resource type="Texture2D" uid="uid://st8kxo8pqp0x" path="res://assets/images/tangibles/fish/armored_chub.png" id="2_lq8ys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_haaun"]
+size = Vector2(150, 78)
+
+[node name="ArmouredChub" instance=ExtResource("1_7e8uh")]
+newSprite = ExtResource("1_4cxim")
+chunkImage = ExtResource("2_ff1ed")
+chunkImage_HFrames = 3
+myID = "armoured_chub"
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource("RectangleShape2D_haaun")
+
+[node name="Anchor" parent="." index="1"]
+position = Vector2(67, 0)
+color = Color(1, 1, 1, 1)
+
+[node name="PrimarySprite" parent="Anchor" index="0"]
+position = Vector2(-75, 0)
+scale = Vector2(0.294278, 0.294278)
+texture = ExtResource("2_lq8ys")
+flip_h = true

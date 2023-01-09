@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cj7enlu4qarvo"]
+[gd_scene load_steps=3 format=3 uid="uid://cj7enlu4qarvo"]
 
 [ext_resource type="Script" path="res://scenes/player/fish_line.gd" id="1_gem7h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3seo"]
 
 [node name="FishLine" type="Node2D"]
 script = ExtResource("1_gem7h")
 
 [node name="Chunks" type="Node2D" parent="."]
+
+[node name="LastChunkPosition" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LastChunkPosition"]
+shape = SubResource("RectangleShape2D_s3seo")
+
+[connection signal="area_entered" from="LastChunkPosition" to="." method="_on_last_chunk_position_area_entered"]

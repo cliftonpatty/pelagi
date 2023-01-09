@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dic47m1meuhbh"]
+
+[ext_resource type="Texture2D" uid="uid://dpm6uxh31dhjj" path="res://assets/ui/art/nice_catch.png" id="1_tlktn"]
+
+[node name="EndOfRound" type="Panel"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -421.0
+offset_bottom = 620.0
+grow_horizontal = 0
+
+[node name="NiceCatch" type="Sprite2D" parent="."]
+position = Vector2(119, 18)
+scale = Vector2(0.75969, 0.75969)
+texture = ExtResource("1_tlktn")

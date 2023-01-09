@@ -9,20 +9,30 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Node2D",
+"class": &"BaseDrillable",
+"language": &"GDScript",
+"path": "res://scenes/drillables/base_drillable.gd"
+}, {
+"base": "BaseDrillable",
+"class": &"BaseFish",
+"language": &"GDScript",
+"path": "res://scenes/drillables/fish/base_fish.gd"
+}, {
+"base": "BaseFish",
+"class": &"BaseSwimmer",
+"language": &"GDScript",
+"path": "res://base_swimmer.gd"
+}, {
 "base": "Tetro",
 "class": &"Deco",
 "language": &"GDScript",
 "path": "res://scenes/meat/base_deco.gd"
 }, {
-"base": "SingleFishBase",
-"class": &"DirectionalSwimmer",
-"language": &"GDScript",
-"path": "res://scenes/tangibles/fish/directional_swimmers.gd"
-}, {
 "base": "Area2D",
 "class": &"GemBase",
 "language": &"GDScript",
-"path": "res://scenes/tangibles/gems/gems_base.gd"
+"path": "res://scenes/drillables/gems/gems_base.gd"
 }, {
 "base": "Area2D",
 "class": &"GridBlock",
@@ -30,21 +40,17 @@ _global_script_classes=[{
 "path": "res://scenes/world/sorting/grid_block.gd"
 }, {
 "base": "Area2D",
-"class": &"SingleFishBase",
-"language": &"GDScript",
-"path": "res://scenes/tangibles/fish/fish_base.gd"
-}, {
-"base": "Area2D",
 "class": &"Tetro",
 "language": &"GDScript",
 "path": "res://scenes/meat/base_tetro.gd"
 }]
 _global_script_class_icons={
+"BaseDrillable": "",
+"BaseFish": "",
+"BaseSwimmer": "",
 "Deco": "",
-"DirectionalSwimmer": "",
 "GemBase": "",
 "GridBlock": "",
-"SingleFishBase": "",
 "Tetro": ""
 }
 
@@ -58,7 +64,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://scripts/globals/globals.gd"
-FishList="*res://scripts/globals/fish_list.gd"
+FishingDB="*res://scripts/globals/fishing_db.gd"
 SortingGlobals="*res://scripts/globals/sorting_globals/sorting_globals.gd"
 
 [debug]
@@ -127,6 +133,7 @@ RotateTetro={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Catchable"
 2d_physics/layer_4="Drillable"
+2d_physics/layer_8="WorldEvents"
 
 [physics]
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://do50v8n3aiby"]
+
+[ext_resource type="Script" path="res://scenes/test_beds/little_tracking_thing.gd" id="1_eplhu"]
+
+[node name="little_tracking_thing" type="Node2D"]
+script = ExtResource("1_eplhu")

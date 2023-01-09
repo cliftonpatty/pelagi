@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnicb1dd61vsi"]
+
+[ext_resource type="Script" path="res://scenes/drillables/base_drillable.gd" id="1_2fh88"]
+
+[node name="BaseDrillable" type="Area2D" groups=["drillable"]]
+collision_layer = 13
+collision_mask = 3
+script = ExtResource("1_2fh88")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+
+[node name="Anchor" type="Polygon2D" parent="."]
+
+[node name="PrimarySprite" type="Sprite2D" parent="Anchor"]

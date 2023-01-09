@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://oa2kj6mg75vm"]
+
+[ext_resource type="PackedScene" uid="uid://d1emxlv3no2jn" path="res://scenes/drillables/fish/base_fish.tscn" id="1_mqqit"]
+[ext_resource type="Script" path="res://base_swimmer.gd" id="2_c56kt"]
+
+[node name="BaseSwimmer" instance=ExtResource("1_mqqit")]
+script = ExtResource("2_c56kt")
+verticalSwimmer = false

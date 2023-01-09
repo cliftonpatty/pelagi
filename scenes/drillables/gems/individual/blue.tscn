@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dyyvfu186k5pd" path="res://scenes/drillables/gems/gems_base.tscn" id="1_lo3wu"]
+[ext_resource type="PackedScene" uid="uid://b6tm4h683v24x" path="res://scenes/drillables/gems/gem_chunk.tscn" id="2_ank0b"]
+[ext_resource type="Texture2D" uid="uid://b4iqo72rkb1yq" path="res://assets/images/tangibles/gems/gem_placeholder.png" id="2_boxmk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkrgm"]
+size = Vector2(116, 146)
+
+[node name="BasicGem" instance=ExtResource("1_lo3wu")]
+lootChunk = ExtResource("2_ank0b")
+lootAmount = 3
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = -0.518873
+scale = Vector2(0.479263, 0.479263)
+texture = ExtResource("2_boxmk")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_qkrgm")
