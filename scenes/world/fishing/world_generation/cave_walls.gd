@@ -29,4 +29,3 @@ func set_extents() -> void:
 	myPoly.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 	myPoly.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 	#polygon.set_polygon(polygon.get_polygon())
-	#print( polygon.get_polygon()[2] )

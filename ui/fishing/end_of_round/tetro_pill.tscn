@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://dylt13u1epmmo"]
+
+[ext_resource type="Script" path="res://ui/fishing/end_of_round/tetro_pill.gd" id="1_ig7pf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1um4"]
+content_margin_left = 15.0
+content_margin_top = 2.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_color = Color(0, 0, 0, 0.117647)
+shadow_size = 3
+
+[node name="TetroPill" type="MarginContainer"]
+theme_override_constants/margin_left = 5
+script = ExtResource("1_ig7pf")
+tetroName = "Knight"
+tetroAmount = 34
+
+[node name="PillContainer" type="PanelContainer" parent="."]
+offset_left = 5.0
+offset_right = 36.0
+offset_bottom = 19.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_o1um4")
+
+[node name="Label" type="Label" parent="PillContainer"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 15.0
+offset_top = 2.0
+offset_right = 16.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 12

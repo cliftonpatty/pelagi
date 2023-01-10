@@ -1,4 +1,6 @@
-extends Node2D
+extends Area2D
+
+var myID : String
 
 func offset_catch(catch):
 	catch.position = Vector2.ZERO

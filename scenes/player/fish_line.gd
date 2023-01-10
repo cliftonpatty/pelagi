@@ -59,10 +59,10 @@ func new_fish_onboarding(fish):
 	
 	var arcPosition = arcStart + (baseIncr * hookGroup.get_child_count())
 	
-	if fish.sprite.get_parent() == null:
-		hookGroup.add_child(fish.sprite)
-		fish.sprite.global_position = hookGroup.global_position
-		fish.sprite.rotation = deg_to_rad((arcPosition * 4) + 90)
+	if fish.get_parent() == null:
+		hookGroup.add_child(fish)
+		fish.global_position = hookGroup.global_position
+		fish.rotation = deg_to_rad((arcPosition * 4) + 90)
 		
 		emit_signal("confirm_caught",fish.myID)
 	

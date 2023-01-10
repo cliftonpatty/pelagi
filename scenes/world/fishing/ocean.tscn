@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://tc21cgd7nc6f"]
+[gd_scene load_steps=18 format=3 uid="uid://tc21cgd7nc6f"]
 
 [ext_resource type="PackedScene" uid="uid://cdxrwy1hw6buq" path="res://scenes/player/player.tscn" id="1_2kdgh"]
 [ext_resource type="Script" path="res://scenes/world/fishing/ocean.gd" id="1_3dxfq"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://betcukpb07lly" path="res://scenes/world/fishing/claw.tscn" id="12_80ql6"]
 [ext_resource type="Texture2D" uid="uid://c6xhty61kb3qh" path="res://assets/images/world/backgrounds/sunset.jpg" id="13_kon01"]
 [ext_resource type="PackedScene" uid="uid://dic47m1meuhbh" path="res://ui/fishing/end_of_round.tscn" id="13_rafqk"]
+[ext_resource type="Texture2D" uid="uid://m21hp4xbfu12" path="res://assets/images/world/backgrounds/background-sky.jpg" id="14_yjune"]
+[ext_resource type="Texture2D" uid="uid://lvatcg8l7n3" path="res://assets/images/world/props/bg_clouds.png" id="15_lcnyi"]
+[ext_resource type="PackedScene" uid="uid://cnp4roqi5uk78" path="res://scenes/world/fishing/grinder.tscn" id="16_05g1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0m0ap"]
 size = Vector2(3086, 23)
@@ -25,6 +28,17 @@ z_index = -99
 position = Vector2(921, -575)
 scale = Vector2(2.38869, 0.648427)
 texture = ExtResource("13_kon01")
+
+[node name="Background-sky" type="Sprite2D" parent="Sunset"]
+position = Vector2(5.86096, -2770.94)
+scale = Vector2(1.00222, 0.846271)
+texture = ExtResource("14_yjune")
+
+[node name="Polygon2D" type="Polygon2D" parent="Sunset"]
+position = Vector2(-18.0015, 14763.4)
+scale = Vector2(1, 4.22516)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-1720.61, -6833.46, -1678.33, -4476.99, 1723.54, -4476.75, 1781.73, -7046.28)
 
 [node name="DepthAndSurface" type="Area2D" parent="." groups=["surface"]]
 position = Vector2(907, 18)
@@ -122,7 +136,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DepthTemp" type="RichTextLabel" parent="CanvasLayer/Control"]
-layout_mode = 0
 offset_left = 28.0
 offset_top = 34.0
 offset_right = 381.0
@@ -131,7 +144,6 @@ theme_override_font_sizes/normal_font_size = 0
 text = "Depth Reading"
 
 [node name="EctTemp" type="RichTextLabel" parent="CanvasLayer/Control"]
-layout_mode = 0
 offset_left = 28.0
 offset_top = 81.0
 offset_right = 717.0
@@ -140,10 +152,35 @@ theme_override_font_sizes/normal_font_size = 0
 text = "Depth Reading"
 
 [node name="EndOfRound" parent="CanvasLayer" instance=ExtResource("13_rafqk")]
-offset_left = -329.0
-offset_top = 19.0
-offset_right = 92.0
-offset_bottom = 639.0
+offset_left = 1280.0
+offset_top = 54.0
+offset_right = -49.0
+offset_bottom = 674.0
+
+[node name="Clouds" type="Node2D" parent="."]
+position = Vector2(943, -1482)
+
+[node name="BgClouds3" type="Sprite2D" parent="Clouds"]
+modulate = Color(0.87451, 0.87451, 0.87451, 1)
+position = Vector2(226, -227)
+scale = Vector2(3.61847, 2.96943)
+texture = ExtResource("15_lcnyi")
+flip_h = true
+
+[node name="BgClouds2" type="Sprite2D" parent="Clouds"]
+modulate = Color(0.964706, 0.964706, 0.964706, 1)
+position = Vector2(119, 70)
+scale = Vector2(4.80455, 2.96943)
+texture = ExtResource("15_lcnyi")
+flip_h = true
+
+[node name="BgClouds" type="Sprite2D" parent="Clouds"]
+position = Vector2(83, 288)
+scale = Vector2(3.72453, 1.69432)
+texture = ExtResource("15_lcnyi")
+
+[node name="Grinder" parent="." instance=ExtResource("16_05g1i")]
+position = Vector2(907, -807)
 
 [connection signal="body_entered" from="DepthAndSurface" to="." method="_on_depth_and_surface_body_entered"]
 

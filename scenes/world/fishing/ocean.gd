@@ -59,8 +59,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		fishGenerator.depth = -1
 		depthTemp.text = 'Above Water'
-
-		camera.global_position = lerp( camera.global_position, cameraTarget.global_position, 20 * delta )
+		player_camera_position( 
+			get_viewport().get_visible_rect().size.y * -0.3,
+			delta
+			)
+		#camera.global_position = lerp( camera.global_position, cameraTarget.global_position, 20 * delta )
 		player.global_position.x = lerp( player.global_position.x, claw.global_position.x, 20 * delta )
 
 

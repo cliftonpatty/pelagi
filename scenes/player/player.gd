@@ -41,7 +41,6 @@ func _physics_process(delta: float) -> void:
 		apply_sprite_rotation(delta)
 
 	move_and_slide()
-	#print(drillActive)
 	
 func apply_sprite_rotation(delta):
 	if velocity.x > 0 and !Globals.ascending:
@@ -87,7 +86,6 @@ func _on_fish_detection_area_entered(tangible: Area2D) -> void:
 				call_deferred("catch_a_fish", tangible)
 	if tangible.is_in_group('loot') and Globals.ascending:
 		if !tangible.caught:
-			print('gem hit')
 			tangible.caught = true
 			call_deferred("catch_a_fish", tangible)
 			

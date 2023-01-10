@@ -75,9 +75,9 @@ gdscript/warnings/integer_division=0
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
-window/stretch/mode="viewport"
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 window/stretch/scale=0.85
 
 [editor_plugins]
@@ -138,3 +138,7 @@ RotateTetro={
 [physics]
 
 common/physics_jitter_fix=1.0
+
+[rendering]
+
+anti_aliasing/quality/use_taa=true

@@ -1,16 +1,74 @@
-[gd_scene load_steps=2 format=3 uid="uid://dic47m1meuhbh"]
+[gd_scene load_steps=8 format=3 uid="uid://dic47m1meuhbh"]
 
 [ext_resource type="Texture2D" uid="uid://dpm6uxh31dhjj" path="res://assets/ui/art/nice_catch.png" id="1_tlktn"]
+[ext_resource type="PackedScene" uid="uid://cxokga3rf1npw" path="res://ui/fishing/end_of_round/caught_fish_entry.tscn" id="2_mi2qf"]
+[ext_resource type="Texture2D" uid="uid://st8kxo8pqp0x" path="res://assets/images/tangibles/fish/armored_chub.png" id="3_mvmaw"]
+[ext_resource type="Texture2D" uid="uid://c82dxpd7tf6pd" path="res://assets/images/tangibles/fish/gem_sucker.png" id="4_d1ock"]
+[ext_resource type="Texture2D" uid="uid://b2sg7aps8j0nd" path="res://assets/images/tangibles/fish/sucker.png" id="5_ojsie"]
+[ext_resource type="Shader" path="res://assets/shaders/cuddle.gdshader" id="5_sq45p"]
 
-[node name="EndOfRound" type="Panel"]
-anchors_preset = 1
-anchor_left = 1.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r65bb"]
+shader = ExtResource("5_sq45p")
+shader_parameter/time = 0.949
+shader_parameter/resolution = Vector2(200, 200)
+
+[node name="EndOfRound" type="PanelContainer"]
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -421.0
-offset_bottom = 620.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="GridContainer" type="VBoxContainer" parent="MarginContainer"]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 1895.0
+offset_bottom = 1055.0
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1870.0
+offset_bottom = 38.0
+theme_override_constants/separation = 38
+
+[node name="CaughtFishEntry" parent="MarginContainer/GridContainer" instance=ExtResource("2_mi2qf")]
+offset_top = 42.0
+offset_right = 1870.0
+offset_bottom = 183.0
+
+[node name="CaughtFishEntry2" parent="MarginContainer/GridContainer" instance=ExtResource("2_mi2qf")]
+offset_top = 187.0
+offset_right = 1870.0
+offset_bottom = 328.0
+myImage = ExtResource("3_mvmaw")
+
+[node name="CaughtFishEntry3" parent="MarginContainer/GridContainer" instance=ExtResource("2_mi2qf")]
+offset_top = 332.0
+offset_right = 1870.0
+offset_bottom = 473.0
+myImage = ExtResource("4_d1ock")
+
+[node name="CaughtFishEntry4" parent="MarginContainer/GridContainer" instance=ExtResource("2_mi2qf")]
+offset_top = 477.0
+offset_right = 1870.0
+offset_bottom = 618.0
+myImage = ExtResource("5_ojsie")
+
+[node name="CaughtFishEntry5" parent="MarginContainer/GridContainer" instance=ExtResource("2_mi2qf")]
+offset_top = 622.0
+offset_right = 1870.0
+offset_bottom = 763.0
 
 [node name="NiceCatch" type="Sprite2D" parent="."]
-position = Vector2(119, 18)
-scale = Vector2(0.75969, 0.75969)
+material = SubResource("ShaderMaterial_r65bb")
+position = Vector2(194, 31)
+scale = Vector2(1.15567, 0.957681)
 texture = ExtResource("1_tlktn")

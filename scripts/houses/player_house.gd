@@ -18,9 +18,7 @@ func _ready() -> void:
 func fish_transfer(fish):
 	#Wipe fish parentage so we can repatriate
 	if fish.get_parent() != null:
-		#print('we gone kill her mom :( ', fish.get_parent())
 		var fishParent = fish.anchoredSprite.get_parent()
-		print(fishParent)
 		
 		#Remove only the anchor and the sprite from the caught fish
 		#We must reparent to a new instance of the 'caughtObj'
@@ -29,12 +27,9 @@ func fish_transfer(fish):
 		newCaughtObject.add_child(fish.anchoredSprite)
 		newCaughtObject.offset_catch(fish.anchoredSprite)
 		#We only need myID to draw data from the database
-		var newCaughtDictionary = {
-			"sprite" : newCaughtObject,
-			"myID" : fish.myID 
-		}
+		newCaughtObject.myID = fish.myID
 		
-		fishLine.new_fish_onboarding(newCaughtDictionary)
+		fishLine.new_fish_onboarding(newCaughtObject)
 		fish.queue_free()
 	else:
 		pass
