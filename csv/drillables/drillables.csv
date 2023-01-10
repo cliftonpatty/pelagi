@@ -1,7 +1,0 @@
-myID,value,depthTier,rarity,swimSpeed,lootGems,lootMeat
-cuddle,50,1,0.9,30,null,"diag,square"
-pig,10,1,1,10,null,square
-spear,100,2,0.7,5,null,"line,square"
-armoured_chub,250,3,0.7,10,null,"knight,knight"
-sucker,50,1,0.3,0,blue,diag
-blue_gem,0,3,0.2,0,"blue,blue,blue",null

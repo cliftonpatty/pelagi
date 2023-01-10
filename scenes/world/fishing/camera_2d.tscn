@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dewgaio4gjq1o"]
+
+[node name="Camera2D" type="Camera2D"]
+top_level = true
+light_mask = 0
+position = Vector2(960, 57)
+current = true
+drag_left_margin = 0.8
+drag_right_margin = 0.8

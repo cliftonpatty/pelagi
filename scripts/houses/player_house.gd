@@ -6,6 +6,8 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 @onready var fishLine: Node2D = $FishLine
 
+const caughtObj = preload("res://scenes/drillables/caught_object.tscn")
+
 var itemsOnLine : Dictionary = {}
 
 func _ready() -> void:
@@ -16,27 +18,35 @@ func _ready() -> void:
 func fish_transfer(fish):
 	#Wipe fish parentage so we can repatriate
 	if fish.get_parent() != null:
-		print(fish)
 		#print('we gone kill her mom :( ', fish.get_parent())
-		var fishParent = fish.get_parent()
-		fishParent.remove_child(fish)
-		#print('mom ded :( ', fish.get_parent())
-		fishLine.new_fish_onboarding(fish)
+		var fishParent = fish.anchoredSprite.get_parent()
+		print(fishParent)
+		
+		#Remove only the anchor and the sprite from the caught fish
+		#We must reparent to a new instance of the 'caughtObj'
+		fishParent.remove_child(fish.anchoredSprite)
+		var newCaughtObject = caughtObj.instantiate()
+		newCaughtObject.add_child(fish.anchoredSprite)
+		newCaughtObject.offset_catch(fish.anchoredSprite)
+		#We only need myID to draw data from the database
+		var newCaughtDictionary = {
+			"sprite" : newCaughtObject,
+			"myID" : fish.myID 
+		}
+		
+		fishLine.new_fish_onboarding(newCaughtDictionary)
+		fish.queue_free()
 	else:
-		print('she got a mom!')
+		pass
 
 #Confirm what has been caught, adding it to the 'registry' that will be
 #sent to the icebox - we will create a dictionary that maintains count as well
 
 func confirm_caught(item):
-	if item.myID:
-		print('in here')
-		if item.myID in itemsOnLine:
-			print('dupe found')
-			itemsOnLine[item.myID].quantity += 1
+	if item:
+		if item in itemsOnLine:
+			itemsOnLine[item].quantity += 1
 		else:
-			print('new one')
-			itemsOnLine[item.myID] = {
-				"drops" : [],
+			itemsOnLine[item] = {
 				"quantity" : 1
 			}

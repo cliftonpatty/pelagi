@@ -3,6 +3,7 @@ extends Node2D
 #Player-------------------------------------------------------------------------
 @onready var playerPackage := $PlayerPackage
 @onready var player := $PlayerPackage/Player
+@onready var fishLine := $PlayerPackage/FishLine
 
 #UI-----------------------------------------------------------------------------
 @onready var camera: Camera2D = $Camera2D
@@ -19,6 +20,12 @@ var depth: int #Current Depth
 #On what increment should we be upgrading the depth tier? 
 @export var depthTierUpdateInc: int = 20
 
+#Who should the camera chase
+var cameraTarget
+
+func _ready() -> void:
+	fishLine.screen_exit.connect(last_fish_exited)
+	cameraTarget = player
 
 func _physics_process(delta: float) -> void:
 	fishGenerator.position.y += Globals.dropSpeed * delta
@@ -52,8 +59,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		fishGenerator.depth = -1
 		depthTemp.text = 'Above Water'
-		
-		camera.global_position = lerp( camera.global_position, claw.global_position, 20 * delta )
+
+		camera.global_position = lerp( camera.global_position, cameraTarget.global_position, 20 * delta )
 		player.global_position.x = lerp( player.global_position.x, claw.global_position.x, 20 * delta )
 
 
@@ -71,6 +78,10 @@ func _on_depth_and_surface_body_entered(body: Node2D) -> void:
 	if body.is_in_group('player'):
 		if Globals.underwater:
 			Globals.underwater = false
+			cameraTarget = claw
 		else:
 			Globals.underwater = true
-	
+
+
+func last_fish_exited(pos):
+	pass

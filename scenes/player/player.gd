@@ -75,7 +75,7 @@ func _on_fish_detection_area_entered(tangible: Area2D) -> void:
 	if drillActive and !Globals.ascending:
 		if tangible.is_in_group('drillable'):
 			tangible.drilled_by_player()
-	if tangible.is_in_group('fish') and drillActive == false:
+	if tangible.is_in_group('catchable') and drillActive == false:
 		if !tangible.caught:
 			if Globals.ascending == false:
 				Globals.trigger_ascent()

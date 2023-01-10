@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://2qmgj5dl2dpm"]
-
-[ext_resource type="PackedScene" uid="uid://c7jfa7wtc4f1n" path="res://scenes/tangibles/fish/directional_swimmers.tscn" id="1_3wonl"]
-[ext_resource type="Script" path="res://scenes/tangibles/fish/wall_hugger.gd" id="2_g5cr2"]
-
-[node name="WallHugger" instance=ExtResource("1_3wonl")]
-script = ExtResource("2_g5cr2")
-rarity = 1.0

@@ -1,15 +1,24 @@
 extends Node2D
 
 @onready var chunks : Node2D = $Chunks
+@onready var lastChunkPosition : Area2D = $LastChunkPosition
 var playerRef : CharacterBody2D
 
 #Line variables - increment is how much each fish rotates per step
-var baseIncr := 10
+var baseIncr := 5
 var arcStart := ((baseIncr * baseIncr)/2)*-1
 
+#To Find the lowest point of our line (for end of round)
+var newestFishChunk
+
 signal confirm_caught(item)
+signal screen_exit(pos)
 
 func _physics_process(delta):
+
+	if newestFishChunk:
+		lastChunkPosition.global_position = newestFishChunk.global_position
+
 	if playerRef:
 		var goalPos = playerRef.global_position
 		var from = rotation
@@ -50,18 +59,18 @@ func new_fish_onboarding(fish):
 	
 	var arcPosition = arcStart + (baseIncr * hookGroup.get_child_count())
 	
-	if fish.get_parent() == null:
-		hookGroup.add_child(fish)
-		fish.global_position = hookGroup.global_position
-		fish.rotation = deg_to_rad((arcPosition * 4) - 90)
+	if fish.sprite.get_parent() == null:
+		hookGroup.add_child(fish.sprite)
+		fish.sprite.global_position = hookGroup.global_position
+		fish.sprite.rotation = deg_to_rad((arcPosition * 4) + 90)
 		
-		emit_signal("confirm_caught",fish)
+		emit_signal("confirm_caught",fish.myID)
 	
 	
 func find_open_group():
 	if chunks.get_child_count() > 0:
 		var lastChunk = chunks.get_child(chunks.get_child_count()-1)
-		if lastChunk.get_child_count() < 5:
+		if lastChunk.get_child_count() < 1:
 			return lastChunk
 		else:
 			var newNode = makeNewNode(chunks.get_child_count())
@@ -72,7 +81,12 @@ func find_open_group():
 
 func makeNewNode(dex):
 	var newNode = Node2D.new()
+	newestFishChunk = newNode
 	chunks.add_child(newNode)
 	newNode.name = 'FishHunk' + str(dex)
 	newNode.position = playerRef.position
 	return newNode
+
+
+func _on_last_chunk_position_area_entered(area: Area2D) -> void:
+	emit_signal("screen_exit", lastChunkPosition)
