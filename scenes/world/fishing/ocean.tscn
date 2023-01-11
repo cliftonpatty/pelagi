@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1ajkkdvwgxe1" path="res://assets/textures/cross-hatch.jpg" id="4_8s3h2"]
 [ext_resource type="PackedScene" uid="uid://cj7enlu4qarvo" path="res://scenes/player/fish_line.tscn" id="4_a0x25"]
 [ext_resource type="PackedScene" uid="uid://bnknqobfg85k6" path="res://scenes/world/fishing/world_generation/fish_generator.tscn" id="5_cin7k"]
-[ext_resource type="PackedScene" uid="uid://dewgaio4gjq1o" path="res://scenes/world/fishing/camera_2d.tscn" id="6_qhyd2"]
+[ext_resource type="PackedScene" path="res://scenes/world/fishing/camera_2d.tscn" id="6_qhyd2"]
 [ext_resource type="PackedScene" path="res://scenes/drillables/gems/individual/blue.tscn" id="9_wrq3m"]
 [ext_resource type="Texture2D" uid="uid://bu23uv53dnt8o" path="res://assets/textures/background-water_generic.jpg" id="11_qe73a"]
 [ext_resource type="PackedScene" uid="uid://betcukpb07lly" path="res://scenes/world/fishing/claw.tscn" id="12_80ql6"]
